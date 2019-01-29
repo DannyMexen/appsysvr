@@ -10,8 +10,8 @@
 
 <body>
     <nav>
-        <div class="nav-wrapper teal lighten">
-            <a href="#" class="brand-logo center">Approval System for Vehicle Requisitions.</a>
+        <div class="nav-wrapper teal">
+            <a href="#" class="brand-logo center">AppSys - Vehicle Requisition Approval System</a>
         </div>
     </nav>
 
