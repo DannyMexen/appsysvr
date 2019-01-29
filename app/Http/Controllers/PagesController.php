@@ -86,4 +86,10 @@ class PagesController extends Controller
         {
            return view('/login');
         }
+    
+        public function requisition()
+            {
+                return view('/requisition');
+                
+            }
 }

@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 'PagesController@login');
+Route::post('/requisition', 'PagesController@requisition');
