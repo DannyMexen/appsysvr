@@ -1,5 +1,9 @@
 @extends('layout') 
 @section('title', 'AppSys Login')
+
+@extends('background')
+@section('bgi')
+    
  
 @section('content')
 <div class="container">
