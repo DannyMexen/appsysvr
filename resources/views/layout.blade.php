@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ 'title', 'AppSys' }}</title>
+    <title>@yield('title', 'AppSys')</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,7 @@
         @media only screen and (min-device-width: 700px) {
 
             body {
-                background-image: url("/img/bgi2.png");
+                background-image: url("/img/bgi.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-attachment: fixed;

@@ -1,6 +1,5 @@
 @extends('layout') 
-@section('title')
-@endsection
+@section('title', 'AppSys Login')
  
 @section('content')
 <div class="container">
