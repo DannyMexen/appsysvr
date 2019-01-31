@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit <i class="material-icons right">find_in_page</i></button>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Search<i class="material-icons right">search</i></button>
                     </div>
                 </div>
 
@@ -62,6 +62,33 @@
                 </div>
 
                 <!-- Purpose -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="purpose" class="materialize-textarea"></textarea>
+                        <label for="purpose">Purpose</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">State briefly how you intend on using this vehicle</span>
+                    </div>
+                </div>
+
+                <!-- Approval personnel -->
+                <div class="row">
+                    <div class="col s6">
+                        <label>Vehicle Requisition Team</label>
+                        <select class="browser-default">
+              <option value="" disabled selected>No one Selected</option>
+              <option value="1">John Banda</option>
+              <option value="2">Jane Phiri</option>
+            </select>
+                    </div>
+                    <div class="input-field col s6">
+                        <input disabled id="manager" type="text">
+                        <label for="manager">Amos Chanda</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Manager</span>
+                    </div>
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
