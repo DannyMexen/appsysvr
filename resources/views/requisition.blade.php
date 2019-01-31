@@ -7,8 +7,8 @@
 
 
 <!-- Navbar goes here -->
-
-<!-- Page Layout here -->
+@extends('navbar')
+ <!-- Page Layout here -->
 <div class="row">
 
     <!-- Select a vehicle from a list -->
@@ -24,7 +24,7 @@
 
     <!-- Main form -->
 
-    <div class="col s12 m8 l9">
+    <div class="col s12 m7 l8">
         <!-- Note that "m8 l9" was added -->
 
         <div class="">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Search<i class="material-icons right">search</i></button>
+                        <button class="btn waves-effect waves-light orange" type="submit" name="action">Search<i class="material-icons right">search</i></button>
                     </div>
                 </div>
 
@@ -92,6 +92,9 @@
             </form>
         </div>
     </div>
+
+    <!-- padding -->
+    <div class="col m1 l1"></div>
 
 </div>
 @endsection

@@ -13,19 +13,9 @@
 </head>
 
 <body>
-    <div class="row">
-        <nav>
-            <div class="nav-wrapper teal">
-                <a href="#" class="brand-logo center">AppSys<i class="large material-icons">drive_eta</i></a>
-            </div>
-        </nav>
-
-
+    
         @yield('content')
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    </div>
-</body>
+    </body>
 
 </html>
