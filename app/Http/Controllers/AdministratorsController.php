@@ -14,6 +14,8 @@ class AdministratorsController extends Controller
 
         $administrators = Administrator::all();
 
+        return $administrators;
+
         return view('/requisition');
     }
 }
