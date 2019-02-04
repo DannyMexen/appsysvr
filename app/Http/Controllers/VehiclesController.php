@@ -16,4 +16,10 @@ class VehiclesController extends Controller
 
         return view('vehicles.index', compact('vehicles'));
     }
+
+    public function add()
+        {
+            return view('vehicles.add');
+            
+        }
 }

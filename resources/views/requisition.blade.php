@@ -7,8 +7,11 @@
 
 
 <!-- Navbar goes here -->
+
+
+
 @extends('navbar')
- <!-- Page Layout here -->
+<!-- Page Layout here -->
 <div class="row">
 
     <!-- Select a vehicle from a list -->
@@ -49,14 +52,14 @@
                 <div class="row">
                     <div class="col s12 m6 l6">
                         <div class="input-field">
-                            <input id="start_date" type="text">
-                            <label for="start_date">Start Date</label>
+                            <input id="start_date" class="datepicker">
+                             <span class="helper-text" data-error="wrong" data-success="right">Start Date</span>
                         </div>
                     </div>
                     <div class="col s12 m6 l6">
                         <div class="input-field">
-                            <input id="return_date" type="text">
-                            <label for="return_date">Return Date</label>
+                            <input id="return_date" class="datepicker"> 
+                             <span class="helper-text" data-error="wrong" data-success="right">Return Date</span>
                         </div>
                     </div>
                 </div>
@@ -92,9 +95,5 @@
             </form>
         </div>
     </div>
-
-    <!-- padding -->
-    <div class="col m1 l1"></div>
-
 </div>
 @endsection
