@@ -79,14 +79,16 @@
 
                             <!-- Approval personnel -->
                             <div class="row">
-                                <div class="col s6">
-                                    <label>Vehicle Requisition Team</label>
-                                    <select class="browser-default">
-              <option value="" disabled selected>No one Selected</option>
-              <option value="1">John Banda</option>
-              <option value="2">Jane Phiri</option>
-            </select>
+
+                                <div class="input-field col s6">
+                                        <select>
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Chewe Musonda</option>
+                                                <option value="2">John Banda</option>
+                                              </select>
+                                              <label>Vehicle Requisitions Approval Team</label>
                                 </div>
+
                                 <div class="input-field col s6">
                                     <input disabled id="manager" type="text">
                                     <label for="manager">Amos Chanda</label>
