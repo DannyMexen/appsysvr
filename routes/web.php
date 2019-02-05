@@ -15,14 +15,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+Resourceful controllers
+
+1. Requisitions
+2. Vehicles
+3. Users
+4. Vehicle Requistions Approval Team
+5. Managers
+6. Deparments
+7. Employees
+*/
+
+Route::resource('requisitions', 'RequisitionsController');
+Route::resource('vehicles', 'VehiclesController');
+Route::resource('users', 'UsersController');
+Route::resource('approval_team', 'ApprovalTeamController');
+Route::resource('managers', 'ManagersController');
+Route::resource('departments', 'DepartmentsController');
+Route::resource('employees', 'EmployeesController');
+
+
+
 Route::get('/login', 'PagesController@login');
 // Route::post('/requisition', 'PagesController@requisition');
 
-// Requisitions
-Route::get('/requisitions/create', 'RequisitionsController@create');
-
 // Vehicles
-Route::get('/vehicles', 'VehiclesController@index');
-Route::post('/vehicles', 'VehiclesController@store');
-Route::get('/vehicles/create', 'VehiclesController@create');
+// Route::get('/vehicles', 'VehiclesController@index');
+// Route::post('/vehicles', 'VehiclesController@store');
+// Route::get('/vehicles/create', 'VehiclesController@create');
 
