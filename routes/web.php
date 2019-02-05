@@ -18,7 +18,8 @@ Route::get('/', function () {
 Route::get('/login', 'PagesController@login');
 // Route::post('/requisition', 'PagesController@requisition');
 
-Route::get('/requisition', 'RequisitionsController@index');
+// Requisitions
+Route::get('/requisitions/create', 'RequisitionsController@create');
 
 // Vehicles
 Route::get('/vehicles', 'VehiclesController@index');
