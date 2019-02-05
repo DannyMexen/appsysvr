@@ -16,9 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 'PagesController@login');
-Route::post('/requisition', 'PagesController@requisition');
+// Route::post('/requisition', 'PagesController@requisition');
+
+Route::get('/requisition', 'RequisitionsController@index');
 
 // Vehicles
-Route::get('vehicles', 'VehiclesController@index');
-Route::get('vehicles/add', 'VehiclesController@add');
+Route::get('/vehicles', 'VehiclesController@index');
+Route::post('/vehicles', 'VehiclesController@store');
+Route::get('/vehicles/create', 'VehiclesController@create');
 

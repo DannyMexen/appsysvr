@@ -9,4 +9,8 @@ use Illuminate\Http\Request;
 class RequisitionsController extends Controller
 {
     //
+    public function index()
+        {
+           return view('/requisition');
+        }
 }

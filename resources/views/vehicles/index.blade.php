@@ -11,7 +11,7 @@
                 <th>Registration</th>
                 <th>Make</th>
                 <th>Model</th>
-                <th>Available? (Y/N)</th>
+                <th>Available</th>
             </tr>
         </thead>
         <tbody>

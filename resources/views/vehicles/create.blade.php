@@ -10,41 +10,47 @@
     <!-- Form to add new vehicle -->
 
     <div class="row">
-        <form class="col s12" action="">
+        <form class="col s12" action="/vehicles" method="POST">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="col s3"></div>
                 <div class="card col s6">
                     <div class="card-content">
                         <!-- Registration -->
                         <div class="input-field">
-                            <input id="registration" type="text">
+                            <input id="registration" type="text" name="registration">
                             <label for="registration">Registration</label>
                         </div>
 
                         <!-- Make-->
                         <div class="input-field">
-                            <input id="make" type="text">
+                            <input id="make" type="text" name="make">
                             <label for="make">Make</label>
                         </div>
 
                         <!-- Model-->
                         <div class="input-field">
-                            <input id="model" type="text">
+                            <input id="model" type="text" name="model">
                             <label for="model">Model</label>
                         </div>
 
                         <!-- Available-->
 
+
+                        <div>
+                            <label for="available">Available</label>
+                        </div>
+
                         <form action="#">
                             <p>
                                 <label>
-                                        <input name="group1" type="radio" checked />
+                                        <input name="available" class="with-gap" value="Yes" type="radio" checked />
                                         <span>Yes</span>
                                       </label>
                             </p>
                             <p>
                                 <label>
-                                        <input name="group1" type="radio" />
+                                        <input name="available" class="with-gap" value="No" type="radio" />
                                         <span>No</span>
                                       </label>
                             </p>
@@ -52,7 +58,7 @@
 
                         <div class="row"></div>
                         <div class="center col s12">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Save<i class="material-icons right">save</i></button>
+                            <button class="btn waves-effect waves-light" type="submit">Save<i class="material-icons right">save</i></button>
                         </div>
                         <div class="row"></div>
 
