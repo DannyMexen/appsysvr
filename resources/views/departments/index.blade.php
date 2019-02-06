@@ -4,10 +4,25 @@
 @section('content')
 
 <div class="row">
-    <div class="col s3"></div>
+    <!-- Left column -->
+    <div class="col s3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <a class="orange btn-floating waves-effect waves-light btn-large" href="/departments/create"><i class="material-icons left">add</i></a>
+                </div>
+                <div class="row"></div>
+                <div class="col s12">
+                    <a class="red btn-floating waves-effect waves-light btn-large" href=""><i class="material-icons left">delete</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle column -->
     <div class="container col s6">
         <div class="row">
-            <div class="card orange">
+            <div class="card light-blue">
                 <div class="card-content">
                     <h5 class="center">Departments</h5>
                 </div>
