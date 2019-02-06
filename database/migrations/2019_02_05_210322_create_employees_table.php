@@ -27,10 +27,7 @@ class CreateEmployeesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('employees', function (Blueprint $table) {
-            $table->string('employee_number', 6)->change();
-            
-        });
+       ;
     }
 
     /**
