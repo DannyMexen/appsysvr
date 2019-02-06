@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 /*
@@ -38,10 +38,3 @@ Route::resource('employees', 'EmployeesController');
 
 
 Route::get('/login', 'PagesController@login');
-// Route::post('/requisition', 'PagesController@requisition');
-
-// Vehicles
-// Route::get('/vehicles', 'VehiclesController@index');
-// Route::post('/vehicles', 'VehiclesController@store');
-// Route::get('/vehicles/create', 'VehiclesController@create');
-

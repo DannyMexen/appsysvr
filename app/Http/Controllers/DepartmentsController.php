@@ -15,6 +15,9 @@ class DepartmentsController extends Controller
     public function index()
     {
         //
+        $departments = Department::all();
+
+        return view('departments.index', compact('departments'));
     }
 
     /**
@@ -25,6 +28,7 @@ class DepartmentsController extends Controller
     public function create()
     {
         //
+        return view('departments.create');
     }
 
     /**

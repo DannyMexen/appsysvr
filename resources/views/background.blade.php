@@ -2,7 +2,7 @@
         @media only screen and (min-device-width: 700px) {
 
             body {
-                background-image: url("/img/bgi.png");
+                background-image: url("/img/bgi2.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-attachment: fixed;

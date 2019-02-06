@@ -1,7 +1,7 @@
-@extends('navbar_login') 
-@section('title', 'AppSys Login') 
+@extends('layout') 
+@extends('navbar_login')
 @extends('background') 
-@section('bgi') 
+@section('title', 'AppSys Login') 
 @section('content')
 <div class="container">
     <div class="row">

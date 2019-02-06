@@ -1,8 +1,7 @@
-@extends('layout')
 <div class="row navbar-fixed">
     <nav>
         <div class="nav-wrapper teal">
-            <a href="#" class="brand-logo center">AppSys<i class="large material-icons right">drive_eta</i></a>
+            <a href="#" class="brand-logo center">AppSys</a>
         </div>
     </nav>
     <!-- padding -->
