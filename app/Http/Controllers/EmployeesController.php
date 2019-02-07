@@ -19,11 +19,18 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = DB::select(DB::raw(
-            "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) as manager
+            "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+            
+            FROM employees e, employees em, users u, departments d, managers m
 
-            FROM employees as e, users as u, departments as d, employees as em, managers as m
+            WHERE
+                em.id = m.employee_id AND e.manager_id = m.employee_id
+                AND
+                e.user_id = u.id
+                AND
+                e.department_id = d.id
 
-            WHERE e.user_id = u.id and e.department_id = d.id and em.id = m.employee_id"
+            GROUP BY e.employee_number"
         ));
 
         return view('employees.index', compact('employees'));
@@ -82,6 +89,7 @@ class EmployeesController extends Controller
                                             ['position', '=', 'Manager'],
                                             ])->get()[0]->id;
                                          
+        // Save all employee details
         $employee->save();
 
         return redirect('/employees');
