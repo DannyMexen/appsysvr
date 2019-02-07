@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="input-field col s6">
-                                <select>
+                                <select name="department_id">
                                       @php ($count = 1)
                                       <option value="" disabled selected>Choose your option</option>
                                       @foreach ($departments as $department)

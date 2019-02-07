@@ -6,6 +6,8 @@ use App\Employee;
 use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeesController extends Controller
 {
@@ -16,38 +18,13 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        /*
-        use appsys;
-
-select
-e.first_name, e.last_name,
-e.nrc_number,
-e.employee_number, 
-u.username, u.email,
-e.position,
-d.name,
-concat(em.first_name, ' ', em.last_name) as manager
-
-from
-employees as e,
-users as u,
-departments as d,
-employees as em,
-managers as m
-
-where
-e.user_id = u.id
-and
-e.department_id = d.id
-and
-em.id = m.employee_id
-         */
         $employees = DB::select(DB::raw(
             "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) as manager
 
             FROM employees as e, users as u, departments as d, employees as em, managers as m
 
-            WHERE e.user_id = u.id and e.department_id = d.id and em.id = m.employee_id"));
+            WHERE e.user_id = u.id and e.department_id = d.id and em.id = m.employee_id"
+        ));
 
         return view('employees.index', compact('employees'));
     }
@@ -72,7 +49,43 @@ em.id = m.employee_id
      */
     public function store(Request $request)
     {
-        //
+        // return request()->all();
+
+        $employee = new Employee();
+        $user = new User();
+
+        // Employee number, first name and last name
+        $employee->employee_number = request('employee_number');
+        $employee->first_name = request('first_name');
+        $employee->last_name = request('last_name');
+
+        // Save username and email first
+        $user->username = request('username');
+        $user->email = request('email');
+        $user->email_verified_at = now();
+        $user->password = Hash::make('Welcome@123');
+        $user->remember_token = str_random(10);
+        $user->save();
+
+        // Get user_id of the above record
+        $employee->user_id = User::all()->last()->id;
+
+
+        // Department details
+        $employee->position = request('position');
+        $employee->department_id = request('department_id');
+
+        $employee->manager_id = DB::table('employees')
+                                        ->select('id')
+                                        ->where([
+                                            ['department_id', '=', $employee->department_id],
+                                            ['position', '=', 'Manager'],
+                                            ])->get()[0]->id;
+                                         
+        $employee->save();
+
+        return redirect('/employees');
+
     }
 
     /**
