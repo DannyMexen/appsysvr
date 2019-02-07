@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +43,7 @@ and
 em.id = m.employee_id
          */
         $employees = DB::select(DB::raw(
-            "SELECT e.first_name, e.last_name, e.nrc_number, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) as manager
+            "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) as manager
 
             FROM employees as e, users as u, departments as d, employees as em, managers as m
 
@@ -58,7 +59,9 @@ em.id = m.employee_id
      */
     public function create()
     {
-        //
+        $departments = Department::all();
+
+        return view('employees.create', compact('departments'));
     }
 
     /**

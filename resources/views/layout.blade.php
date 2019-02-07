@@ -34,6 +34,22 @@
     var instances = M.FormSelect.init(elems, {});
   });
     </script>
+
+    <!-- Tooltip -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, {});
+  });
+    </script>
+
+    <!-- Fixed floating button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {});
+  });
+    </script>
 </body>
 
 </html>
