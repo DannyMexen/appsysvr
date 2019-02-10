@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApprovalTeamTable extends Migration
+class CreateVtOfficersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateApprovalTeamTable extends Migration
      */
     public function up()
     {
-        Schema::create('approval_team', function (Blueprint $table) {
+        Schema::create('vehicle_officers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateApprovalTeamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approval_team');
+        Schema::dropIfExists('vt_officers');
     }
 }

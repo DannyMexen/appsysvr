@@ -93,7 +93,7 @@ class ManagersController extends Controller
         $manager->employee_id = Employee::all()->last()->id;
         $manager->save();
 
-        return redirect('/employees');
+        return redirect('/managers');
     }
 
     /**

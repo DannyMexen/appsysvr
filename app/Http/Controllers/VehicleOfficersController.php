@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ApprovalTeam;
+use App\VehicleOfficer;
 use Illuminate\Http\Request;
 
-class ApprovalTeamController extends Controller
+class VehicleOfficersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ApprovalTeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ApprovalTeam  $approvalTeam
+     * @param  \App\VehicleOfficer  $vehicleOfficer
      * @return \Illuminate\Http\Response
      */
-    public function show(ApprovalTeam $approvalTeam)
+    public function show(VehicleOfficer $vehicleOfficer)
     {
         //
     }
@@ -52,10 +52,10 @@ class ApprovalTeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ApprovalTeam  $approvalTeam
+     * @param  \App\VehicleOfficer  $vehicleOfficer
      * @return \Illuminate\Http\Response
      */
-    public function edit(ApprovalTeam $approvalTeam)
+    public function edit(VehicleOfficer $vehicleOfficer)
     {
         //
     }
@@ -64,10 +64,10 @@ class ApprovalTeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ApprovalTeam  $approvalTeam
+     * @param  \App\VehicleOfficer  $vehicleOfficer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ApprovalTeam $approvalTeam)
+    public function update(Request $request, VehicleOfficer $vehicleOfficer)
     {
         //
     }
@@ -75,10 +75,10 @@ class ApprovalTeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ApprovalTeam  $approvalTeam
+     * @param  \App\VehicleOfficer  $vehicleOfficer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ApprovalTeam $approvalTeam)
+    public function destroy(VehicleOfficer $vehicleOfficer)
     {
         //
     }

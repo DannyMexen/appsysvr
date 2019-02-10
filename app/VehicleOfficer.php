@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ApprovalTeam extends Model
+class VehicleOfficer extends Model
 {
     //
 }
