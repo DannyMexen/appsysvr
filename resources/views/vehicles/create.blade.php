@@ -4,10 +4,22 @@
 @section('content')
 
 <div class="row">
-    <div class="col s3"></div>
+    <!-- Left column -->
+    <div class="col s3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn-large" href="/vehicles"><i class="material-icons left">chevron_left</i></a>
+                </div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle column -->
     <div class="container col s6">
 
-        <div class="card orange">
+        <div class="light-blue card">
             <div class="card-content">
                 <h5 class="center">Add a New Vehicle</h5>
             </div>

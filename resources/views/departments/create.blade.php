@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="orange btn-floating waves-effect waves-light btn-large" href="/departments"><i class="material-icons left">chevron_left</i></a>
+                    <a class="btn-floating waves-effect waves-light btn-large" href="/departments"><i class="material-icons left">chevron_left</i></a>
                 </div>
                 <div class="row"></div>
             </div>
