@@ -9,7 +9,9 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="btn-floating waves-effect waves-light btn-large" href="/vehicles"><i class="material-icons left">chevron_left</i></a>
+                    <div class="">
+                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Vehicles" href="/vehicles"><i class="material-icons left">directions_car</i></a>
+                    </div>
                 </div>
                 <div class="row"></div>
             </div>

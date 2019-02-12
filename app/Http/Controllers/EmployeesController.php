@@ -89,6 +89,9 @@ class EmployeesController extends Controller
                                             ['position', '=', 'Manager'],
                                             ])->get()[0]->id;
                                          
+        // Account status
+        $employee->status = 'Active';
+
         // Save all employee details
         $employee->save();
 

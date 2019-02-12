@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->string('position');
             $table->integer('department_id');
             $table->integer('manager_id');
+            $table->string('status');
             $table->timestamps();
         });
 

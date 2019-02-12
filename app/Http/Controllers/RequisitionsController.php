@@ -17,7 +17,7 @@ class RequisitionsController extends Controller
      */
     public function index()
     {
-        //
+        return view('requistions.index');
     }
 
     /**
@@ -27,10 +27,12 @@ class RequisitionsController extends Controller
      */
     public function create()
     {
-        // vehicle list
-        $vehicles = Vehicle::all();
+        // Available vehicles
+        $vehicles = Vehicle::all()->where('available', '=', 'Yes');
+
+        // VT Officers
         $officers = DB::select(DB::raw(
-             "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+             "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
             FROM employees e, employees em, users u, departments d, managers m
 
@@ -60,6 +62,8 @@ class RequisitionsController extends Controller
     public function store(Request $request)
     {
         //
+        return request()->all();
+        
     }
 
     /**
