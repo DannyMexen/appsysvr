@@ -13,7 +13,7 @@ class CreateVtOfficersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle_officers', function (Blueprint $table) {
+        Schema::create('officers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('employee_id');
             $table->timestamps();

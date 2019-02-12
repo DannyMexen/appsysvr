@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VehicleOfficer extends Model
+class Officer extends Model
 {
     //
 }
