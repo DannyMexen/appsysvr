@@ -33,21 +33,6 @@
             <form action="#" method="post">
                 <div class="card">
                     <div class="card-content">
-                        <div class="row">
-                            <!-- Search bar -->
-                            <div class="input-field col s6">
-                                <input id="search" type="text">
-                                <label for="search">Search</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input disabled id="car_details" type="text">
-                                <label for="car_details">Car details will appear here</label>
-                            </div>
-
-                            <div class="col s12">
-                                <button class="btn waves-effect waves-light orange" type="submit" name="action">Search<i class="material-icons right">search</i></button>
-                            </div>
-                        </div>
 
                         <!-- Start and return dates -->
                         <div class="row">
@@ -87,7 +72,7 @@
                                                @php ($count++)
                                             @endforeach
                                 </select>
-                                <label>Select Vehicle</label>
+                                <label>First Line Approval Team</label>
                             </div>
 
                             <div class="input-field col s6">
