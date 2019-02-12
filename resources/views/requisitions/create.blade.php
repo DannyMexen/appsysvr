@@ -1,5 +1,5 @@
 @extends('layout') 
-@section('title', 'AppSys Requisition') 
+@section('title', 'New Requisition') 
 @section('content')
 
 <!-- Navbar goes here -->
