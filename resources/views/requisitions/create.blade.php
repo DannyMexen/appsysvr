@@ -2,16 +2,7 @@
 @section('title', 'AppSys Requisition') 
 @section('content')
 
-
-
-
-
 <!-- Navbar goes here -->
-
-
-
-
-
 
 
 
@@ -88,11 +79,15 @@
 
                             <div class="input-field col s6">
                                 <select>
-                                                <option value="" disabled selected>Choose your option</option>
-                                                <option value="1">Chewe Musonda</option>
-                                                <option value="2">John Banda</option>
-                                              </select>
-                                <label>Vehicle Requisitions Approval Team</label>
+
+                                            @php ($count = 1)
+                                            <option value="" disabled selected>Choose your option</option>
+                                            @foreach ($officers as $officer)
+                                               <option value={{ $count }}>{{ $officer->first_name}} {{ $officer->last_name}}</option> 
+                                               @php ($count++)
+                                            @endforeach
+                                </select>
+                                <label>Select Vehicle</label>
                             </div>
 
                             <div class="input-field col s6">

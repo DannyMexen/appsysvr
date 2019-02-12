@@ -1,4 +1,3 @@
-
 @extends('layout') 
 @extends('navbar') 
 @section('title', 'VT Officers') 
@@ -11,7 +10,10 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="orange btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Vehicle Officer" href="/officers/create"><i class="material-icons left">add</i></a>
+                    <div class="fixed-action-btn">
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Vehicle Officer"
+                            href="/admnistration"><i class="material-icons left">chevron_left</i></a>
+                    </div>
                 </div>
             </div>
         </div>

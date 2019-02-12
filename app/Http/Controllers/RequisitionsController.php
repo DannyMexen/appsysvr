@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Requisition;
 use App\Vehicle;
+use App\Officer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RequisitionsController extends Controller
 {
@@ -27,7 +29,26 @@ class RequisitionsController extends Controller
     {
         // vehicle list
         $vehicles = Vehicle::all();
-        return view('requisitions.create', compact('vehicles'));
+        $officers = DB::select(DB::raw(
+             "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+            
+            FROM employees e, employees em, users u, departments d, managers m
+
+            WHERE
+                e.department_id = 7
+                AND
+                e.position = 'VT Officer'
+                AND
+                em.id = m.employee_id AND e.manager_id = m.employee_id
+                AND
+                e.user_id = u.id
+                AND
+                e.department_id = d.id
+
+            GROUP BY e.employee_number"
+    )); 
+
+        return view('requisitions.create', compact('vehicles', 'officers'));
     }
 
     /**
