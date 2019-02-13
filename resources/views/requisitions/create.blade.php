@@ -4,11 +4,6 @@
 
 <!-- Navbar goes here -->
 
-
-
-
-
-@extends('navbar')
 <!-- Page Layout here -->
 <div class="row">
 
@@ -79,7 +74,7 @@
 
                             <!-- Change to department -->
                             <div class="input-field col s6">
-                                <input readonly id="manager" name="manager" value="Amos Chanda - Department" type="text">
+                                <input readonly id="manager" name="manager_department" value="Chanda Mulenga - Legal" type="text">
                                 <label for="manager">Manager & Department</label>
                             </div>
                             <div class="col s12">

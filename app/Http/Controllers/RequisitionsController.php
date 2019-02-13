@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Requisition;
+use App\Employee;
 use App\Vehicle;
 use App\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function GuzzleHttp\Promise\all;
 
 class RequisitionsController extends Controller
 {
@@ -17,7 +19,9 @@ class RequisitionsController extends Controller
      */
     public function index()
     {
-        return view('requistions.index');
+        $requisitions = Requisition::all();
+
+        return view('requisitions.index', compact('requisitions'));
     }
 
     /**
@@ -61,8 +65,48 @@ class RequisitionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        return request()->all();
+        //return request()->all();
+
+        $requisition = new Requisition();
+
+        $requisition->vehicle_id = request('vehicle_id');
+        $requisition->start_date = request('start_date');
+        $requisition->return_date = request('return_date');
+        $requisition->purpose = request('purpose');
+        $requisition->officer_id = request('officer_id');
+        $manager_department = request('manager_department');
+
+
+        // Separate manager and department details
+        $manager_department_details = explode(' - ', $manager_department);
+        $manager = $manager_department_details[0];
+        $department = $manager_department_details[1];
+
+        // Department ID
+        $department_id = DB::table('departments')->select('id')
+                                                                ->where('name', '=', $department)
+                                                                ->get()[0]->id;
+
+        // Manager ID
+        $requisition->manager_id = DB::table('employees')->select('id')
+                                                        ->where([
+                                                            ['department_id','=',$department_id],
+                                                            ['position', '=','Manager']
+                                                        ])->get()[0]->id;
+        // Pending Action
+        $requisition->pending_action = 'Officer';
+
+
+        // Save requisition
+        $requisition->save();
+
+        // Make vehicle unavailable
+        DB::table('vehicles')
+                ->where('id', $requisition->vehicle_id)
+                ->update(['available' => 'No']);
+
+
+        return redirect('/requisitions');
         
     }
 
