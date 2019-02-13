@@ -19,7 +19,28 @@ class RequisitionsController extends Controller
      */
     public function index()
     {
-        $requisitions = Requisition::all();
+        $requisitions = DB::select(DB::raw(
+            "
+                SELECT 
+                        v.registration, v.make, v.model, 
+                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
+                        e.employee_number,
+                        concat(e.first_name, ' ', e.last_name) as employee_name,
+                        u.email,
+                        concat(em.first_name, ' ', em.last_name) as manager
+                FROM 
+                        vehicles v, requisitions r, employees e, employees em, users u
+                WHERE 
+                        v.id = r.vehicle_id
+                        AND r.manager_id = em.id
+                        AND r.employee_id = e.id
+                        AND u.id = e.user_id
+                        AND v.available = 'No'
+                ORDER BY
+                        r.created_at
+            "
+        )); 
+        
 
         return view('requisitions.index', compact('requisitions'));
     }
@@ -36,9 +57,11 @@ class RequisitionsController extends Controller
 
         // VT Officers
         $officers = DB::select(DB::raw(
-             "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+             "SELECT 
+                    e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
-            FROM employees e, employees em, users u, departments d, managers m
+            FROM 
+                    employees e, employees em, users u, departments d, managers m
 
             WHERE
                 e.department_id = 7
@@ -87,6 +110,9 @@ class RequisitionsController extends Controller
                                                                 ->where('name', '=', $department)
                                                                 ->get()[0]->id;
 
+
+        // Requester's ID
+        $requisition->employee_id = 18;
         // Manager ID
         $requisition->manager_id = DB::table('employees')->select('id')
                                                         ->where([

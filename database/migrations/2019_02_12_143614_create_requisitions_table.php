@@ -20,6 +20,7 @@ class CreateRequisitionsTable extends Migration
             $table->timestamp('end_date');
             $table->text('purpose');
             $table->integer('officer_id');
+            $table->integer('employee_id');
             $table->integer('manager_id');
             $table->string('pending_action');
             $table->timestamps();
