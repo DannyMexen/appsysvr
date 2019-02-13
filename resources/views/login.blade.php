@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="input-field">
                                     <i class="material-icons prefix">lock</i>
-                                    <input type="password" id="password">
+                                    <input type="password" id="password" name="hash">
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="input-field">

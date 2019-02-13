@@ -83,13 +83,22 @@ class PagesController extends Controller
     }
 
     public function login()
-        {
-           return view('/login');
-        }
-    
-        public function requisition()
-            {
-                return view('/requisition');
-                
-            }
+    {
+        return view('/login');
+    }
+
+    public function requisition()
+    {
+        
+        return request()->all();
+        
+        /*
+
+            Get user record using the username above
+            Compare the hash t
+        */
+
+        // return view('/requisition');
+
+    }
 }
