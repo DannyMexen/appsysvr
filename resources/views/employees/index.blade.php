@@ -9,10 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <div class="fixed-action-btn">
+                    <div class="">
                         <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Employee"
                             href="/employees/create"><i class="material-icons left">add</i></a>
                     </div>
+                    <div class="row"></div>
                 </div>
             </div>
         </div>
@@ -43,7 +44,7 @@
                             @php ($count = 1) @foreach ($employees as $employee)
                             <tr>
                                 <td>{{ $count }}</td>
-                                <td>{{ $employee->employee_number}}</td>
+                                <td><u><a href="/employees/{{ $employee->id }}/edit" class="black-text tooltipped" data-position="right" data-tooltip="Click to Edit">{{ $employee->employee_number }}</a></u></td>
                                 <td>{{ $employee->username}}</td>
                                 <td>{{ $employee->email}}</td>
                                 <td>{{ $employee->position}}</td>

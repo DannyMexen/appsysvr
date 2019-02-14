@@ -19,7 +19,7 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = DB::select(DB::raw(
-            "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+            "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
             FROM employees e, employees em, users u, departments d, managers m
 
@@ -116,9 +116,29 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $departments = Department::all();
+
+
+        $employee = DB::select(DB::raw(
+            "SELECT 
+                    e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
+            
+            FROM
+                    employees e, employees em, users u, departments d, managers m
+
+            WHERE
+                    e.id = $id
+                    AND
+                    em.id = m.employee_id AND e.manager_id = m.employee_id
+                    AND
+                    e.user_id = u.id
+                    AND
+                    e.department_id = d.id"
+        ))[0];
+
+        return view('employees.edit', compact('departments', 'employee'));
     }
 
     /**
@@ -131,6 +151,7 @@ class EmployeesController extends Controller
     public function update(Request $request, Employee $employee)
     {
         //
+        dd('Hello');
     }
 
     /**
