@@ -29,6 +29,7 @@ class EmployeesController extends Controller
                 e.user_id = u.id
                 AND
                 e.department_id = d.id
+                AND e.status = 'Active'
 
             GROUP BY e.employee_number"
         ));
@@ -150,7 +151,6 @@ class EmployeesController extends Controller
      */
     public function update($id)
     {
-        // dd(request()->all());
 
         $employee = Employee::find($id);
         $user = User::find($employee->user_id);
@@ -165,18 +165,19 @@ class EmployeesController extends Controller
 
         if (request('department_id') !== null) {
             $employee->department_id = (int)request('department_id');
+
+
+            $employee->manager_id = DB::table('employees')
+                ->select('id')
+                ->where([
+                    ['department_id', '=', $employee->department_id],
+                    ['position', '=', 'Manager'],
+                ])->get()[0]->id;
         }
-
-        $employee->manager_id = DB::table('employees')
-            ->select('id')
-            ->where([
-                ['department_id', '=', $employee->department_id],
-                ['position', '=', 'Manager'],
-            ])->get()[0]->id;
-
+        
         $employee->status = 'Active';
 
-        return ($employee);
+        // return ($employee);
 
         $user->save();
         $employee->save();
