@@ -29,9 +29,14 @@ class EmployeesController extends Controller
                 e.user_id = u.id
                 AND
                 e.department_id = d.id
-                AND e.status = 'Active'
+                AND
+                e.status = 'Active'
+                AND
+                e.position NOT LIKE '%Manager%'
 
-            GROUP BY e.employee_number"
+            GROUP BY e.employee_number
+            ORDER BY d.name
+            "
         ));
 
         return view('employees.index', compact('employees'));
