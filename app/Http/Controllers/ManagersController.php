@@ -147,9 +147,25 @@ class ManagersController extends Controller
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manager $manager)
+    public function update($id)
     {
-        //
+        // dd(request()->all());
+
+        $employee = Employee::find($id);
+        $user = User::find($employee->user_id);
+
+        $employee->employee_number = request('employee_number');
+        $employee->first_name = request('first_name');
+        $employee->last_name = request('last_name');
+        $user->username = request('username');
+        $user->email = request('email');
+
+        $employee->status = 'Active';
+
+        $user->save();
+        $employee->save();
+
+        return redirect('/managers');
     }
 
     /**
