@@ -39,7 +39,7 @@
                             @php ($count = 1) @foreach ($managers as $manager)
                             <tr>
                                 <td>{{ $count }}</td>
-                                <td>{{ $manager->employee_number}}</td>
+                                <td><u><a href="/managers/{{ $manager->id }}/edit" class="black-text tooltipped" data-position="right" data-tooltip="Click to Edit">{{ $manager->employee_number }}</a></u></td>
                                 <td>{{ $manager->username}}</td>
                                 <td>{{ $manager->email}}</td>
                                 <td>{{ $manager->department}}</td>

@@ -1,6 +1,6 @@
 @extends('layout') 
 @extends('navbar') 
-@section('title', 'Edit Employee') 
+@section('title', 'Edit Manager') 
 @section('content')
 
 
@@ -12,13 +12,14 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Employees" href="/employees"><i class="material-icons">chevron_left</i></a>
+                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons">chevron_left</i></a>
                     </div>
                 </div>
                 <div class="row"></div>
                 <div class="col s12">
                     <div class="">
-                        <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Deactivate" href="/employees"><i class="material-icons">do_not_disturb</i></a>
+                        <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Deactivate"
+                            href="/managers"><i class="material-icons">delete</i></a>
                     </div>
                 </div>
             </div>
@@ -28,27 +29,27 @@
     <!-- Middle colum -->
     <div class="container col s8">
 
-        <div class="card light-blue">
-            <div class="card-content">
+        <div class="light-blue card">
+            <div class="row"></div>
+            <div class="">
                 <div class="row">
-                    <h5 class="center">Edit Employee</h5>
+                    <h5 class="center">Edit Manager</h5>
                 </div>
             </div>
         </div>
 
-        <!-- Form to add new employee -->
+        <!-- Form to edit manager's details -->
         <div class="card">
             <div class="card-content">
-                <form class="" action="/employees/{{ $employee->id }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH')}}
+                <form class="" action="/managers/{{ $manager->id }}" method="POST">
+                    {{ csrf_field() }} {{ method_field('PATCH')}}
                     <div class="row">
 
                         <!-- Employee Number -->
                         <div class="row">
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="employee_number" type="text" name="employee_number" value="{{ $employee->employee_number }}">
+                                    <input id="employee_number" type="text" name="employee_number" value="{{ $manager->employee_number }}">
                                     <label for="employee_number">Employee Number</label>
                                 </div>
                             </div>
@@ -58,13 +59,13 @@
                         <div class="row">
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="first_name" type="text" name="first_name" value="{{ $employee->first_name}}">
+                                    <input id="first_name" type="text" name="first_name" value="{{ $manager->first_name}}">
                                     <label for="first_name">First Name</label>
                                 </div>
                             </div>
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="last_name" type="text" name="last_name" value="{{ $employee->last_name }}">
+                                    <input id="last_name" type="text" name="last_name" value="{{ $manager->last_name }}">
                                     <label for="last_name">Last Name</label>
                                 </div>
                             </div>
@@ -74,13 +75,13 @@
                         <div class="row">
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="username" type="text" name="username" value="{{ $employee->username }}">
+                                    <input id="username" type="text" name="username" value="{{ $manager->username }}">
                                     <label for="username">Username</label>
                                 </div>
                             </div>
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="email" type="text" name="email" value="{{ $employee->email }}">
+                                    <input id="email" type="text" name="email" value="{{ $manager->email }}">
                                     <label for="email">E-mail</label>
                                 </div>
                             </div>
@@ -90,20 +91,15 @@
                         <div class="row">
                             <div class="col s6">
                                 <div class="input-field">
-                                    <input id="position" type="text" name="position" value="{{ $employee->position}}">
+                                    <input disabled id="position" type="text" name="position" value="{{ $manager->position}}">
                                     <label for="position">Position</label>
                                 </div>
                             </div>
-                            <div class="input-field col s6">
-                                <select name="department_id">
-                                      @php ($count = 1)
-                                      <option value="" disabled selected>{{ $employee->department }}</option>
-                                      @foreach ($departments as $department)
-                                     <option value={{ $count }}>{{ $department->name }}</option> 
-                                     @php ($count++)
-                                      @endforeach
-                                </select>
-                                <label>Department</label>
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input disabled id="department" type="text" name="department" value="{{ $manager->department}}">
+                                    <label for="position">Department</label>
+                                </div>
                             </div>
                         </div>
 
@@ -120,5 +116,4 @@
         <div class="col s2"></div>
     </div>
 </div>
-
 @endsection

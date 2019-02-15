@@ -20,7 +20,7 @@ class ManagersController extends Controller
     public function index()
     {
         $managers = DB::select(DB::raw(
-        "SELECT e.first_name, e.last_name, e.employee_number, u.username, u.email, d.name as department
+            "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, d.name as department
         
         FROM employees e, users u, departments d, managers m
 
@@ -32,9 +32,11 @@ class ManagersController extends Controller
             e.user_id = u.id
             AND
             e.department_id = d.id
+            AND
+            e.status = 'Active'
 
         GROUP BY e.employee_number"
-    ));
+        ));
         return view('managers.index', compact('managers'));
     }
 
@@ -83,7 +85,7 @@ class ManagersController extends Controller
 
         // Department details
         $employee->position = 'Manager';
-        $employee->department_id = request('department_id'); 
+        $employee->department_id = request('department_id');
         $employee->manager_id = 1;
         
         // Save all employee details
@@ -113,9 +115,29 @@ class ManagersController extends Controller
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function edit(Manager $manager)
+    public function edit($id)
     {
-        //
+        $manager = DB::select(DB::raw(
+            "SELECT e.id, e.first_name, e.last_name, e.employee_number, e.position, u.username, u.email, d.name as department
+        
+        FROM employees e, users u, departments d, managers m
+
+        WHERE
+            e.id = $id
+            AND
+            e.position LIKE '%manager%' 
+            AND
+            e.id = m.employee_id
+            AND
+            e.user_id = u.id
+            AND
+            e.department_id = d.id
+            AND
+            e.status = 'Active'
+
+        GROUP BY e.employee_number"
+        ))[0];
+        return view('managers.edit', compact('manager'));
     }
 
     /**
