@@ -39,4 +39,28 @@ class VehiclesController extends Controller
 
         return redirect('/vehicles');
     }
+
+    public function edit($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        // return ($vehicle);
+
+        return view('vehicles.edit', compact('vehicle'));
+
+    }
+
+    public function update($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        $vehicle->registration = request('registration');
+        $vehicle->make= request('make');
+        $vehicle->model = request('model');
+
+        $vehicle->save();
+
+        return redirect('/vehicles');
+
+    }
 }

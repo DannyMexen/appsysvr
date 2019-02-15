@@ -20,9 +20,11 @@
     <div class="col s10">
         <div class="row">
             <div class="light-blue card">
-                <div class="card-content">
+                <div class="row"></div>
+                <div class="">
                     <h5 class="center">Vehicles</h5>
                 </div>
+                <div class="row"></div>
             </div>
             <div class="card teal">
                 <div class="card-content">
@@ -40,7 +42,7 @@
                             @php ($count = 1) @foreach ($vehicles as $vehicle)
                             <tr>
                                 <td>{{ $count }}</td>
-                                <td>{{ $vehicle->registration }}</td>
+                                <td><u><a href="/vehicles/{{ $vehicle->id }}/edit" class="black-text tooltipped" data-position="right" data-tooltip="Click to Edit">{{ $vehicle->registration}}</a></u></td>
                                 <td>{{ $vehicle->make}}</td>
                                 <td>{{ $vehicle->model}}</td>
                                 <td>{{ $vehicle->available}}</td>

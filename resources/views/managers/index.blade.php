@@ -10,7 +10,8 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="orange btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Manager" href="/managers/create"><i class="material-icons left">add</i></a>
+                    <a class="orange btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Manager"
+                        href="/managers/create"><i class="material-icons left">add</i></a>
                 </div>
             </div>
         </div>
@@ -20,8 +21,10 @@
     <div class="container col s10">
         <div class="row">
             <div class="card light-blue">
-                <div class="card-content">
+                <div class="row"></div>
+                <div class="">
                     <h5 class="center">Managers</div>
+            <div class="row"></div>
             </div>
             <div class="card teal">
                 <div class="card-content">
