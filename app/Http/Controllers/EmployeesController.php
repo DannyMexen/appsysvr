@@ -83,11 +83,11 @@ class EmployeesController extends Controller
         $employee->department_id = request('department_id');
 
         $employee->manager_id = DB::table('employees')
-                                        ->select('id')
-                                        ->where([
-                                            ['department_id', '=', $employee->department_id],
-                                            ['position', '=', 'Manager'],
-                                            ])->get()[0]->id;
+            ->select('id')
+            ->where([
+                ['department_id', '=', $employee->department_id],
+                ['position', '=', 'Manager'],
+            ])->get()[0]->id;
                                          
         // Account status
         $employee->status = 'Active';
@@ -148,11 +148,42 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update($id)
     {
-        //
-        dd('Hello');
+        // dd(request()->all());
+
+        $employee = Employee::find($id);
+        $user = User::find($employee->user_id);
+
+        $employee->employee_number = request('employee_number');
+        $employee->first_name = request('first_name');
+        $employee->last_name = request('last_name');
+        $user->username = request('username');
+        $user->email = request('email');
+
+        $employee->position = request('position');
+
+        if (request('department_id') !== null) {
+            $employee->department_id = (int)request('department_id');
+        }
+
+        $employee->manager_id = DB::table('employees')
+            ->select('id')
+            ->where([
+                ['department_id', '=', $employee->department_id],
+                ['position', '=', 'Manager'],
+            ])->get()[0]->id;
+
+        $employee->status = 'Active';
+
+        return ($employee);
+
+        $user->save();
+        $employee->save();
+
+        return redirect('/employees');
     }
+
 
     /**
      * Remove the specified resource from storage.

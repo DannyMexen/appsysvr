@@ -33,8 +33,9 @@
         <!-- Form to add new employee -->
         <div class="card">
             <div class="card-content">
-                <form class="" action="/employees" method="POST">
+                <form class="" action="/employees/{{ $employee->id }}" method="POST">
                     {{ csrf_field() }}
+                    {{ method_field('PATCH')}}
                     <div class="row">
 
                         <!-- Employee Number -->
@@ -90,7 +91,7 @@
                             <div class="input-field col s6">
                                 <select name="department_id">
                                       @php ($count = 1)
-                                      <option value="" disabled selected>Choose your option</option>
+                                      <option value="" disabled selected>{{ $employee->department }}</option>
                                       @foreach ($departments as $department)
                                      <option value={{ $count }}>{{ $department->name }}</option> 
                                      @php ($count++)
