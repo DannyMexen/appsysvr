@@ -50,7 +50,7 @@
                                 <td>{{ $requisition->start_date}}</td>
                                 <td>{{ $requisition->return_date}}</td>
                                 <td>{{ $requisition->employee_number}}</td>
-                                <td><a class="waves-effect waves-light blue btn">Details</a></td>
+                                <td><a class="waves-effect waves-light blue btn" href="/requisitions/{{ $requisition->id }}">Details</a></td>
                                 <td><a class="waves-effect waves-light green btn">Approve</a></td>
                                 <td><a class="waves-effect waves-light red btn">Reject</a></td>
                                 @php ($count++)

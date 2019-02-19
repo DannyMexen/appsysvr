@@ -23,7 +23,7 @@ class RequisitionsController extends Controller
             "
                 SELECT 
                         v.registration, v.make, v.model, 
-                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
+                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.id, r.purpose, 
                         e.employee_number,
                         concat(e.first_name, ' ', e.last_name) as employee_name,
                         u.email,
@@ -39,8 +39,8 @@ class RequisitionsController extends Controller
                 ORDER BY
                         r.created_at
             "
-        )); 
-        
+        ));
+
 
         return view('requisitions.index', compact('requisitions'));
     }
@@ -57,7 +57,7 @@ class RequisitionsController extends Controller
 
         // VT Officers
         $officers = DB::select(DB::raw(
-             "SELECT 
+            "SELECT 
                     e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
             FROM 
@@ -75,7 +75,7 @@ class RequisitionsController extends Controller
                 e.department_id = d.id
 
             GROUP BY e.employee_number"
-    )); 
+        ));
 
         return view('requisitions.create', compact('vehicles', 'officers'));
     }
@@ -107,18 +107,18 @@ class RequisitionsController extends Controller
 
         // Department ID
         $department_id = DB::table('departments')->select('id')
-                                                                ->where('name', '=', $department)
-                                                                ->get()[0]->id;
+            ->where('name', '=', $department)
+            ->get()[0]->id;
 
 
         // Requester's ID
         $requisition->employee_id = 18;
         // Manager ID
         $requisition->manager_id = DB::table('employees')->select('id')
-                                                        ->where([
-                                                            ['department_id','=',$department_id],
-                                                            ['position', '=','Manager']
-                                                        ])->get()[0]->id;
+            ->where([
+                ['department_id', '=', $department_id],
+                ['position', '=', 'Manager']
+            ])->get()[0]->id;
         // Pending Action
         $requisition->pending_action = 'Officer';
 
@@ -128,12 +128,12 @@ class RequisitionsController extends Controller
 
         // Make vehicle unavailable
         DB::table('vehicles')
-                ->where('id', $requisition->vehicle_id)
-                ->update(['available' => 'No']);
+            ->where('id', $requisition->vehicle_id)
+            ->update(['available' => 'No']);
 
 
         return redirect('/requisitions');
-        
+
     }
 
     /**
@@ -142,9 +142,32 @@ class RequisitionsController extends Controller
      * @param  \App\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function show(Requisition $requisition)
+    public function show($id)
     {
-        //
+        $requisition = DB::select(DB::raw("
+
+            SELECT 
+                        v.registration, v.make, v.model,
+                        r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
+	                    concat(eo.first_name, ' ', eo.last_name) AS officer, concat(e.first_name, ' ', e.last_name) AS requester, concat(em.first_name, ' ', em.last_name) AS manager,
+                        r.pending_action
+
+            FROM
+	                    vehicles v, requisitions r, employees eo, employees e, employees em
+
+            WHERE
+	                    r.vehicle_id = v.id
+                        AND
+                        r.officer_id = eo.id
+                        AND
+                        r.employee_id = e.id
+                        AND
+                        r.manager_id = em.id
+                        AND
+                        r.id = $id
+        "))[0];
+
+        return view('requisitions.show', compact('requisition'));
     }
 
     /**
