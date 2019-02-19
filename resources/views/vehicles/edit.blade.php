@@ -18,8 +18,11 @@
                 <div class="row"></div>
                 <div class="col s12">
                     <div class="">
-                        <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Decommission"
-                            href="/vehicles"><i class="material-icons">delete</i></a>
+                        <form action="/vehicles/{{ $vehicle->id }}" method="POST">
+                            @method('DELETE') @csrf
+                            <button class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Delete"><i class="material-icons">delete</i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -30,16 +33,19 @@
     <div class="container col s6">
 
         <div class="light-blue card">
-            <div class="card-content">
-                <h5 class="center">Add a New Vehicle</h5>
+            <div class="row"></div>
+            <div class="">
+                <h5 class="center">Edit Vehicle Details</h5>
             </div>
+            <div class="row"></div>
         </div>
 
         <!-- Form to edit a vehicle -->
         <div class="card">
             <div class="card-content">
                 <form class="" action="/vehicles/{{ $vehicle->id }}" method="POST">
-                    {{ csrf_field() }} {{ method_field('PATCH')}}
+                    @method('PATCH')
+                    @csrf
                     <div class="row">
                         <!-- Registration -->
                         <div class="input-field">
