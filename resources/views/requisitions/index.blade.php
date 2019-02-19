@@ -6,18 +6,31 @@
 
 <div class="row">
     <!-- Left column -->
-    <div class="col s1"></div>
+    <div class="col s1">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
+                </div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Middle column -->
     <div class="col s10">
         <div class="row">
             <div class="card light-blue">
-                <div class="card-content">
+                <div class="row"></div>
+                <div class="">
                     <h5 class="center">Requisitions
                 </div>
+                <div class="row"></div>
             </div>
 
-            <div class="card teal">
+            <div class="card blue lighten-3">
                 <div class="card-content">
                     <table class="highlight responsive-table centered">
                         <thead>
@@ -37,7 +50,7 @@
                                 <td>{{ $requisition->start_date}}</td>
                                 <td>{{ $requisition->return_date}}</td>
                                 <td>{{ $requisition->employee_number}}</td>
-                                <td><a class="waves-effect waves-light orange btn">Details</a></td>
+                                <td><a class="waves-effect waves-light blue btn">Details</a></td>
                                 <td><a class="waves-effect waves-light green btn">Approve</a></td>
                                 <td><a class="waves-effect waves-light red btn">Reject</a></td>
                                 @php ($count++)

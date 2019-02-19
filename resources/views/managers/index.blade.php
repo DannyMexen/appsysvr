@@ -10,6 +10,11 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
+                </div>
+                <div class="row"></div>
+
+                <div class="col s12">
                     <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Manager"
                         href="/managers/create"><i class="material-icons left">add</i></a>
                 </div>
@@ -24,7 +29,7 @@
                 <div class="row"></div>
                 <div class="">
                     <h5 class="center">Managers</div>
-            <div class="row"></div>
+                <div class="row"></div>
             </div>
             <div class="card blue lighten-3">
                 <div class="card-content">

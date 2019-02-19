@@ -9,6 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
+                </div>
+                <div class="row"></div>
+
+                <div class="col s12">
                     <div class="">
                         <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Employee"
                             href="/employees/create"><i class="material-icons left">add</i></a>
