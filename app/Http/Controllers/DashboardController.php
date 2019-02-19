@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
 use Illuminate\Http\Request;
 
-class DepartmentsController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,7 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        //
-        $departments = Department::all();
-
-        return view('departments.index', compact('departments'));
+        return view('dashboard.index');
     }
 
     /**
@@ -28,7 +24,6 @@ class DepartmentsController extends Controller
     public function create()
     {
         //
-        return view('departments.create');
     }
 
     /**
@@ -40,22 +35,15 @@ class DepartmentsController extends Controller
     public function store(Request $request)
     {
         //
-        $department = new Department();
-
-        $department->name = request('name');
-
-        $department->save();
-
-        return redirect('/departments');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show($id)
     {
         //
     }
@@ -63,25 +51,22 @@ class DepartmentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $department = Department::findOrFail($id);
-
-
-        return view('departments.edit', compact('department'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -89,15 +74,11 @@ class DepartmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Department  $department
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $department = Department::findOrFail($id);
-
-        $department->delete();
-
-        return redirect('/departments');
+        //
     }
 }

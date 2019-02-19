@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('dashboard.index');
 });
 
 /*
@@ -25,6 +25,7 @@ Resourceful controllers
 5. Managers
 6. Deparments
 7. Employees
+8. Dashboard
 */
 
 Route::resource('requisitions', 'RequisitionsController');
@@ -34,6 +35,7 @@ Route::resource('officers', 'OfficersController');
 Route::resource('managers', 'ManagersController');
 Route::resource('departments', 'DepartmentsController');
 Route::resource('employees', 'EmployeesController');
+Route::resource('dashboard', 'DashboardController');
 
 
 
