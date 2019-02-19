@@ -157,8 +157,8 @@ class EmployeesController extends Controller
     public function update($id)
     {
 
-        $employee = Employee::find($id);
-        $user = User::find($employee->user_id);
+        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($employee->user_id);
 
         $employee->employee_number = request('employee_number');
         $employee->first_name = request('first_name');
@@ -197,8 +197,14 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($employee->user_id);
+
+        $employee->delete();
+        $user->delete();
+
+        return redirect('/employees');
     }
 }

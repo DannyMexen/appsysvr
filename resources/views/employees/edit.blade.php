@@ -12,14 +12,18 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Employees" href="/employees"><i class="material-icons">chevron_left</i></a>
+                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Employees" href="/employees"><i class="material-icons">group</i></a>
                     </div>
                 </div>
                 <div class="row"></div>
                 <div class="col s12">
                     <div class="">
-                        <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Deactivate" href="/employees"><i class="material-icons">do_not_disturb</i></a>
+                        <form action="/employees/{{ $employee->id }}" method="POST">
+                            @method('DELETE') @csrf
+                            <button class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Delete"><i class="material-icons">delete</i>
+                            </button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -29,19 +33,20 @@
     <div class="container col s8">
 
         <div class="card light-blue">
-            <div class="card-content">
-                <div class="row">
+            <div class="row"></div>
+            <div class="">
+                <div class="">
                     <h5 class="center">Edit Employee</h5>
                 </div>
             </div>
+            <div class="row"></div>
         </div>
 
         <!-- Form to add new employee -->
         <div class="card">
             <div class="card-content">
                 <form class="" action="/employees/{{ $employee->id }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH')}}
+                    {{ csrf_field() }} {{ method_field('PATCH')}}
                     <div class="row">
 
                         <!-- Employee Number -->
@@ -120,5 +125,4 @@
         <div class="col s2"></div>
     </div>
 </div>
-
 @endsection
