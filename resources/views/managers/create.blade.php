@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons left">chevron_left</i></a>
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons left">group_add</i></a>
                     </div>
                 </div>
             </div>

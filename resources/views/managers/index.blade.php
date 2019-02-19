@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="orange btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Manager"
+                    <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Add Manager"
                         href="/managers/create"><i class="material-icons left">add</i></a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <h5 class="center">Managers</div>
             <div class="row"></div>
             </div>
-            <div class="card teal">
+            <div class="card blue lighten-3">
                 <div class="card-content">
                     <table class="highlight responsive-table centered">
                         <thead>

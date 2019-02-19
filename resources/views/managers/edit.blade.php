@@ -12,14 +12,17 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons">chevron_left</i></a>
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons">group_add</i></a>
                     </div>
                 </div>
                 <div class="row"></div>
                 <div class="col s12">
                     <div class="">
-                        <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Deactivate"
-                            href="/managers"><i class="material-icons">delete</i></a>
+                        <form action="/managers/{{ $manager->id }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Delete"><i class="material-icons">delete</i></button>
+                        </form>
                     </div>
                 </div>
             </div>

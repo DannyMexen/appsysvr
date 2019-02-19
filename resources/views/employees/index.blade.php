@@ -1,6 +1,6 @@
 @extends('layout') 
 @extends('navbar') 
-@section('title', 'AppSys - Employees') 
+@section('title', 'Employees') 
 @section('content')
 
 <div class="row">
@@ -22,11 +22,16 @@
     <!-- Middle column -->
     <div class="container col s10">
         <div class="row">
+
             <div class="card light-blue">
-                <div class="card-content">
-                    <h5 class="center">Employees</div>
+                <div class="row"></div>
+                <div class="">
+                    <h5 class="center">Employees</h5>
+                </div>
+                <div class="row"></div>
             </div>
-            <div class="card teal">
+
+            <div class="card blue lighten-3">
                 <div class="card-content">
                     <table class="highlight responsive-table centered">
                         <thead>

@@ -30,8 +30,6 @@ class EmployeesController extends Controller
                 AND
                 e.department_id = d.id
                 AND
-                e.status = 'Active'
-                AND
                 e.position NOT LIKE '%Manager%'
 
             GROUP BY e.employee_number
@@ -95,8 +93,6 @@ class EmployeesController extends Controller
                 ['position', '=', 'Manager'],
             ])->get()[0]->id;
                                          
-        // Account status
-        $employee->status = 'Active';
 
         // Save all employee details
         $employee->save();
@@ -180,10 +176,6 @@ class EmployeesController extends Controller
                 ])->get()[0]->id;
         }
         
-        $employee->status = 'Active';
-
-        // return ($employee);
-
         $user->save();
         $employee->save();
 

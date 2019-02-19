@@ -32,10 +32,8 @@ class ManagersController extends Controller
             e.user_id = u.id
             AND
             e.department_id = d.id
-            AND
-            e.status = 'Active'
 
-        GROUP BY e.employee_number"
+        -- GROUP BY e.employee_number"
         ));
         return view('managers.index', compact('managers'));
     }
@@ -63,6 +61,7 @@ class ManagersController extends Controller
         // return request()->all();
 
         $employee = new Employee();
+
         $user = new User();
         $manager = new Manager();
 
@@ -87,13 +86,27 @@ class ManagersController extends Controller
         $employee->position = 'Manager';
         $employee->department_id = request('department_id');
         $employee->manager_id = 1;
-        
+
         // Save all employee details
         $employee->save();
 
         // Add to managers table
         $manager->employee_id = Employee::all()->last()->id;
         $manager->save();
+
+        // Update new manager for all staff in that department
+        DB::table('employees')->where([
+            ['department_id', $employee->department_id],
+            ['position', 'NOT LIKE', '%manager%']
+        ])
+            ->update(['manager_id' => $manager->employee_id]);
+
+        $department_staff = DB::table('employees')->where([
+            ['department_id', $employee->department_id],
+            ['position', 'NOT LIKE', '%manager%']
+        ])->get();
+
+        return $department_staff;
 
         return redirect('/managers');
     }
@@ -132,8 +145,6 @@ class ManagersController extends Controller
             e.user_id = u.id
             AND
             e.department_id = d.id
-            AND
-            e.status = 'Active'
 
         GROUP BY e.employee_number"
         ))[0];
@@ -160,8 +171,6 @@ class ManagersController extends Controller
         $user->username = request('username');
         $user->email = request('email');
 
-        $employee->status = 'Active';
-
         $user->save();
         $employee->save();
 
@@ -174,8 +183,19 @@ class ManagersController extends Controller
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manager $manager)
+    public function destroy($id)
     {
-        //
+
+
+        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($employee->user_id);
+        $manager = Manager::where('employee_id', '=', $employee->id)->firstOrFail();
+
+        $employee->delete();
+        $manager->delete();
+        $user->delete();
+
+        return redirect('/managers');
+
     }
 }

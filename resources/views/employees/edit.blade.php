@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Employees" href="/employees"><i class="material-icons">group</i></a>
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Employees" href="/employees"><i class="material-icons">group</i></a>
                     </div>
                 </div>
                 <div class="row"></div>
