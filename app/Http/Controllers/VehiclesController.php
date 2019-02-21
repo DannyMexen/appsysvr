@@ -72,14 +72,10 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Vehicle $vehicle)
     {
-        $vehicle = Vehicle::findOrFail($id);
-
-        // return ($vehicle);
 
         return view('vehicles.edit', compact('vehicle'));
-
 
     }
 
@@ -112,9 +108,9 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle)
     {
-        Vehicle::findOrFail($id)->delete();
+        $vehicle->delete();
 
         return redirect('/vehicles');
     }

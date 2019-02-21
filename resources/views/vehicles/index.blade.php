@@ -31,7 +31,7 @@
                 </div>
                 <div class="row"></div>
             </div>
-            <div class="card teal">
+            <div class="card blue lighten-3">
                 <div class="card-content">
                     <table class="highlight responsive-table centered">
                         <thead>

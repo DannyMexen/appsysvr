@@ -1,6 +1,6 @@
 <div class="row navbar-fixed">
     <nav>
-        <div class="nav-wrapper teal">
+        <div class="nav-wrapper blue darken-4">
             <a href="#" class="brand-logo center">AppSys</a>
             <ul class="right hide-on-med-and-down">
 
