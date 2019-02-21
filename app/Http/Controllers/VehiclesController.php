@@ -27,7 +27,6 @@ class VehiclesController extends Controller
      */
     public function create()
     {
-        //
         return view('vehicles.create');
     }
 
@@ -39,17 +38,7 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $vehicle = new Vehicle();
-
-        $vehicle->registration = request('registration');
-        $vehicle->make = request('make');
-        $vehicle->model = request('model');
-        $vehicle->available = request('available');
-
-        $vehicle->save();
-
-        // return request()->all();
+        Vehicle::create(request(['registration', 'make', 'model', 'available']));
 
         return redirect('/vehicles');
  
@@ -63,7 +52,7 @@ class VehiclesController extends Controller
      */
     public function show($id)
     {
-        //
+        // This is taken care of by both @index and @edit
     }
 
     /**
@@ -86,20 +75,11 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vehicle $vehicle)
     {
-        //
-        $vehicle = Vehicle::findOrFail($id);
-
-        $vehicle->registration = request('registration');
-        $vehicle->make= request('make');
-        $vehicle->model = request('model');
-
-        $vehicle->save();
+        $vehicle->update(request(['registration', 'make', 'model']));
 
         return redirect('/vehicles');
-
-
     }
 
     /**
