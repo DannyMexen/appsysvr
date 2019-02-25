@@ -16,6 +16,6 @@ class AdministratorsController extends Controller
 
         return $administrators;
 
-        return view('/requisition');
+        return view('/requisitions');
     }
 }

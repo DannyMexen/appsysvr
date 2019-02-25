@@ -106,7 +106,7 @@ class ManagersController extends Controller
             ['position', 'NOT LIKE', '%manager%']
         ])->get();
 
-        return $department_staff;
+        // Update requisitions table for all pending items
 
         return redirect('/managers');
     }

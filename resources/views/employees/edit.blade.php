@@ -30,7 +30,7 @@
     </div>
 
     <!-- Middle colum -->
-    <div class="container col s8">
+    <div class="col s8">
 
         <div class="card light-blue">
             <div class="row"></div>
@@ -42,7 +42,7 @@
             <div class="row"></div>
         </div>
 
-        <!-- Form to add new employee -->
+        <!-- Form to edit new employee -->
         <div class="card">
             <div class="card-content">
                 <form class="" action="/employees/{{ $employee->id }}" method="POST">

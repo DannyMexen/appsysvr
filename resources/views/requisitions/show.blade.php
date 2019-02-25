@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col s12">
                     <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
-                        href="/requisitions"><i class="material-icons left">directions_car</i></a>
+                        href="/requisitions"><i class="material-icons left">list</i></a>
                 </div>
                 <div class="row"></div>
             </div>

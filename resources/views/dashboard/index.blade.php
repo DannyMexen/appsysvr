@@ -5,14 +5,14 @@
 
 <div class="container">
 
-<!-- Requisitions -->
+    <!-- Requisitions -->
     <div class="row">
         <div class="col s3"></div>
 
         <div class="col s6">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="/img/requisitions.png">
+                    <a href="/requisitions"><img src="/img/requisitions.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -37,7 +37,7 @@
         <div class="col s6">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="/img/employees.png">
+                    <a href="/employees"><img src="/img/employees.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -56,7 +56,7 @@
         <div class="col s6">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="/img/managers.png">
+                    <a href="/managers"><img src="/img/managers.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -80,7 +80,7 @@
         <div class="col s6">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="/img/departments.png">
+                    <a href="/departments"><img src="/img/departments.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -99,7 +99,7 @@
         <div class="col s6">
             <div class="card horizontal">
                 <div class="card-image">
-                    <img src="/img/vehicles.png">
+                    <a href="/vehicles"><img src="/img/vehicles.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -115,9 +115,6 @@
             </div>
         </div>
 
-
     </div>
-
-    
 </div>
 @endsection

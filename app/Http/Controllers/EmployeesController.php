@@ -92,13 +92,12 @@ class EmployeesController extends Controller
                 ['department_id', '=', $employee->department_id],
                 ['position', '=', 'Manager'],
             ])->get()[0]->id;
-                                         
+
 
         // Save all employee details
         $employee->save();
 
         return redirect('/employees');
-
     }
 
     /**
@@ -118,27 +117,26 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
         $departments = Department::all();
 
-
-        $employee = DB::select(DB::raw(
-            "SELECT 
+        $employee = DB::select(DB::raw("
+            SELECT 
                     e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
             FROM
                     employees e, employees em, users u, departments d, managers m
 
             WHERE
-                    e.id = $id
+                    e.id = $employee->id
                     AND
                     em.id = m.employee_id AND e.manager_id = m.employee_id
                     AND
                     e.user_id = u.id
                     AND
-                    e.department_id = d.id"
-        ))[0];
+                    e.department_id = d.id
+            "))[0];
 
         return view('employees.edit', compact('departments', 'employee'));
     }
@@ -175,7 +173,7 @@ class EmployeesController extends Controller
                     ['position', '=', 'Manager'],
                 ])->get()[0]->id;
         }
-        
+
         $user->save();
         $employee->save();
 
@@ -189,9 +187,8 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
         $user = User::findOrFail($employee->user_id);
 
         $employee->delete();
@@ -200,3 +197,4 @@ class EmployeesController extends Controller
         return redirect('/employees');
     }
 }
+

@@ -14,7 +14,6 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        //
         $departments = Department::all();
 
         return view('departments.index', compact('departments'));
@@ -27,7 +26,6 @@ class DepartmentsController extends Controller
      */
     public function create()
     {
-        //
         return view('departments.create');
     }
 
@@ -37,13 +35,10 @@ class DepartmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $department = new Department();
 
-        $department->name = request('name');
-
-        $department->save();
+        Department::create(request(['name']));
 
         return redirect('/departments');
     }
@@ -65,11 +60,8 @@ class DepartmentsController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
-        $department = Department::findOrFail($id);
-
-
         return view('departments.edit', compact('department'));
     }
 
@@ -91,10 +83,8 @@ class DepartmentsController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
-        $department = Department::findOrFail($id);
-
         $department->delete();
 
         return redirect('/departments');

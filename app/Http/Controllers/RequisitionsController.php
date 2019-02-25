@@ -131,6 +131,7 @@ class RequisitionsController extends Controller
             ->where('id', $requisition->vehicle_id)
             ->update(['available' => 'No']);
 
+        // Send e-mail
 
         return redirect('/requisitions');
 
