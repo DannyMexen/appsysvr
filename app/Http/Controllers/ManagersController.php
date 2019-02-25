@@ -58,8 +58,6 @@ class ManagersController extends Controller
     public function store(Request $request)
     {
 
-        // return request()->all();
-
         $employee = new Employee();
 
         $user = new User();
@@ -185,7 +183,6 @@ class ManagersController extends Controller
      */
     public function destroy($id)
     {
-
 
         $employee = Employee::findOrFail($id);
         $user = User::findOrFail($employee->user_id);

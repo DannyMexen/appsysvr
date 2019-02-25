@@ -38,6 +38,12 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'registration' => ['required', 'min:5', 'max:255'],
+            'make' => ['required', 'min:3', 'max:255'],
+            'model' => ['required', 'min:2', 'max:255']
+        ]);
+
         Vehicle::create(request(['registration', 'make', 'model', 'available']));
 
         return redirect('/vehicles');

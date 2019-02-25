@@ -19,10 +19,11 @@
     </div>
 
     <!-- Middle column -->
-    <div class="container col s6">
+    <div class="col s6">
 
         <div class="light-blue card">
-            <div class="card-content">
+            <div class="row"></div>
+            <div class="">
                 <h5 class="center">Add a New Vehicle</h5>
             </div>
         </div>
@@ -35,19 +36,19 @@
                     <div class="row">
                         <!-- Registration -->
                         <div class="input-field">
-                            <input id="registration" type="text" name="registration">
+                            <input id="registration" type="text" name="registration" value="{{ old('registration') }}">
                             <label for="registration">Registration</label>
                         </div>
 
                         <!-- Make-->
                         <div class="input-field">
-                            <input id="make" type="text" name="make">
+                            <input id="make" type="text" name="make" value="{{ old('make') }}">
                             <label for="make">Make</label>
                         </div>
 
                         <!-- Model-->
                         <div class="input-field">
-                            <input id="model" type="text" name="model">
+                            <input id="model" type="text" name="model" value="{{ old('model') }}">
                             <label for="model">Model</label>
                         </div>
 
@@ -78,7 +79,23 @@
                 </form>
             </div>
         </div>
-        <div class="col s3"></div>
     </div>
+
+    <!-- Right column -->
+    <div class="col s3">
+        @if ($errors->any())
+        <div class="red card darken-2">
+            <div class="card-content">
+                <h6 class="center">Please address the following.</h6>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li class="white-text">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        @endif
+    </div>
+
 </div>
 @endsection
