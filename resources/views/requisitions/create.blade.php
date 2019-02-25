@@ -1,4 +1,5 @@
 @extends('layout') 
+@extends('navbar')
 @section('title', 'New Requisition') 
 @section('content')
 

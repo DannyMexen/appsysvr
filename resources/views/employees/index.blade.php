@@ -5,7 +5,7 @@
 
 <div class="row">
     <!-- Left column -->
-    <div class="col s1">
+    <div class="col s1 m1 l1">
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -25,7 +25,7 @@
     </div>
 
     <!-- Middle column -->
-    <div class="container col s10">
+    <div class="col s10 m10 l10">
         <div class="row">
 
             <div class="card light-blue">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s1">
+        <div class="col s1 m1 l1">
         </div>
     </div>
 @endsection

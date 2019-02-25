@@ -39,7 +39,6 @@ class DepartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $department = new Department();
 
         $department->name = request('name');

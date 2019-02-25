@@ -23,7 +23,7 @@
     </div>
 
     <!-- Middle column -->
-    <div class="container col s10">
+    <div class="col s10">
         <div class="row">
             <div class="card light-blue">
                 <div class="row"></div>
