@@ -38,16 +38,18 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'registration' => ['required', 'min:5', 'max:255'],
-            'make' => ['required', 'min:3', 'max:255'],
-            'model' => ['required', 'min:2', 'max:255']
-        ]);
+        // return request()->all();
 
-        Vehicle::create(request(['registration', 'make', 'model', 'available']));
+        Vehicle::create(
+            request()->validate([
+                'registration' => ['required', 'min:5', 'max:255', 'unique:vehicles,registration'],
+                'make' => ['required', 'min:3', 'max:255'],
+                'model' => ['required', 'min:2', 'max:255'],
+                'available' => ['required']
+            ])
+        );
 
         return redirect('/vehicles');
- 
     }
 
     /**
@@ -71,7 +73,6 @@ class VehiclesController extends Controller
     {
 
         return view('vehicles.edit', compact('vehicle'));
-
     }
 
     /**

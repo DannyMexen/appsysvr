@@ -64,6 +64,10 @@ class EmployeesController extends Controller
         $employee = new Employee();
         $user = new User();
 
+        // Validation
+        $employee->employee_number = request()->validate([
+            'employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']
+        ]);
         // Employee number, first name and last name
         $employee->employee_number = request('employee_number');
         $employee->first_name = request('first_name');
