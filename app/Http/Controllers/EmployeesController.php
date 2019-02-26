@@ -85,7 +85,7 @@ class EmployeesController extends Controller
 
         // Department details
         $employee->position = request()->validate(['position' => 'required', 'min:7', 'max:255'])['position'];
-        $employee->department_id = request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required']);
+        $employee->department_id = request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required'])['department_id'];
 
         $employee->manager_id = DB::table('employees')
             ->select('id')
@@ -95,8 +95,6 @@ class EmployeesController extends Controller
             ])->get()[0]->id;
 
 
-
-        return ([$user, $employee]);
         // Save all employee details
         $employee->save();
 
