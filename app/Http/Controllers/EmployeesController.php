@@ -64,21 +64,19 @@ class EmployeesController extends Controller
         $employee = new Employee();
         $user = new User();
 
-        // Validation
-        $employee->employee_number = request()->validate([
-            'employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']
-        ]);
         // Employee number, first name and last name
-        $employee->employee_number = request('employee_number');
-        $employee->first_name = request('first_name');
-        $employee->last_name = request('last_name');
+        $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']])['employee_number'];
+        $employee->first_name = request()->validate(['first_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['first_name'];
+        $employee->last_name = request()->validate(['last_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['last_name'];
 
         // Save username and email first
-        $user->username = request('username');
-        $user->email = request('email');
-        $user->email_verified_at = now();
+        $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255', 'unique:users,username']])['username'];
+        $user->email = request()->validate(['email' => ['required', 'email', 'unique:users,email']])['email'];
+
+        $user->email_verified_at = now()->toArray()['formatted'];
         $user->password = Hash::make('Welcome@123');
         $user->remember_token = str_random(10);
+
         $user->save();
 
         // Get user_id of the above record
@@ -86,8 +84,8 @@ class EmployeesController extends Controller
 
 
         // Department details
-        $employee->position = request('position');
-        $employee->department_id = request('department_id');
+        $employee->position = request()->validate(['position' => 'required', 'min:7', 'max:255'])['position'];
+        $employee->department_id = request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required']);
 
         $employee->manager_id = DB::table('employees')
             ->select('id')
@@ -97,6 +95,8 @@ class EmployeesController extends Controller
             ])->get()[0]->id;
 
 
+
+        return ([$user, $employee]);
         // Save all employee details
         $employee->save();
 
