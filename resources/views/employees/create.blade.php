@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="employee_number" type="text" name="employee_number" value="{{ old('employee_number') }}" class="validate">
+                                        <input id="employee_number" type="text" name="employee_number" value="{{ old('employee_number') }}" class="validate" required>
                                         <label for="employee_number">Employee Number</label>
                                     </div>
                                 </div>
@@ -56,13 +56,13 @@
                             <div class="row">
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" class="validate">
+                                        <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" class="validate" required>
                                         <label for="first_name">First Name</label>
                                     </div>
                                 </div>
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" class="validate">
+                                        <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" class="validate" required>
                                         <label for="last_name">Last Name</label>
                                     </div>
                                 </div>
@@ -72,13 +72,13 @@
                             <div class="row">
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="username" type="text" name="username" value="{{ old('username') }}" class="validate">
+                                        <input id="username" type="text" name="username" value="{{ old('username') }}" class="validate" required>
                                         <label for="username">Username</label>
                                     </div>
                                 </div>
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="email" type="email" name="email" value="{{ old('email') }}" class="validate">
+                                        <input id="email" type="email" name="email" value="{{ old('email') }}" class="validate" required>
                                         <label for="email">E-mail</label>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                             <div class="row">
                                 <div class="col s6">
                                     <div class="input-field">
-                                        <input id="position" type="text" name="position" value="{{ old('position') }}" class="validate">
+                                        <input id="position" type="text" name="position" value="{{ old('position') }}" class="validate" required>
                                         <label for="position">Position</label>
                                     </div>
                                 </div>

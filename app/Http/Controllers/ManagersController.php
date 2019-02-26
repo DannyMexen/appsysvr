@@ -64,9 +64,10 @@ class ManagersController extends Controller
         $manager = new Manager();
 
         // Employee number, first name and last name
-        $employee->employee_number = request('employee_number');
-        $employee->first_name = request('first_name');
-        $employee->last_name = request('last_name');
+        $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']])['employee_number'];
+        $employee->first_name = request()->validate(['first_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['first_name'];
+        $employee->last_name = request()->validate(['last_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['last_name'];
+
 
         // Save username and email first
         $user->username = request('username');
@@ -74,7 +75,7 @@ class ManagersController extends Controller
         $user->email_verified_at = now();
         $user->password = Hash::make('Welcome@123');
         $user->remember_token = str_random(10);
-        $user->save();
+        // $user->save();
 
         // Get user_id of the above record
         $employee->user_id = User::all()->last()->id;
@@ -86,14 +87,16 @@ class ManagersController extends Controller
         $employee->manager_id = 1;
 
         // Save all employee details
-        $employee->save();
+        // $employee->save();
 
         // Add to managers table
         $manager->employee_id = Employee::all()->last()->id;
-        $manager->save();
+        // $manager->save();
+
+        return $employee;
 
         // Update new manager for all staff in that department
-        DB::table('employees')->where([
+/*         DB::table('employees')->where([
             ['department_id', $employee->department_id],
             ['position', 'NOT LIKE', '%manager%']
         ])
@@ -104,7 +107,7 @@ class ManagersController extends Controller
             ['position', 'NOT LIKE', '%manager%']
         ])->get();
 
-        // Update requisitions table for all pending items
+ */        // Update requisitions table for all pending items
 
         return redirect('/managers');
     }
