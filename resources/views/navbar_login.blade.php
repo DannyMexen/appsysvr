@@ -1,7 +1,7 @@
 <div class="row navbar-fixed">
     <nav>
-        <div class="nav-wrapper teal">
-            <a href="#" class="brand-logo center">AppSys</a>
+        <div class="nav-wrapper grey darken-4">
+            <a href="#" class="brand-logo center">Vehicle Requisition</a>
         </div>
     </nav>
     <!-- padding -->

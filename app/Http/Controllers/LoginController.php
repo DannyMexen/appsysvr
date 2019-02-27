@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\MessageBag;
 
-class PagesController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        //
+        return view('login.index');
     }
 
     /**
@@ -22,9 +25,7 @@ class PagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +35,25 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $errors = new MessageBag();
+        $errors->add('password', 'The username and/or password is invaild');
+
+        $username = request()->validate(['username' => ['required', 'exists:users']], ['username.required' => 'The username is required'])['username'];
+        $password = request()->validate(['hash' => ['required']], ['hash.required' => 'The password is required'])['hash'];
+
+        $user = User::where('username', $username)->firstOrFail();
+
+        if (password_verify($password, $user->password)) {
+            return ('Valid');
+        }
+        else
+        {
+            return back()->withErrors($errors);
+        }
+
+
+        return $user;
     }
 
     /**
@@ -80,25 +99,5 @@ class PagesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function login()
-    {
-        return view('/login');
-    }
-
-    public function requisition()
-    {
-        
-        return request()->all();
-        
-        /*
-
-            Get user record using the username above
-            Compare the hash t
-        */
-
-        // return view('/requisition');
-
     }
 }
