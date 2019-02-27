@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
@@ -49,7 +50,7 @@ class LoginController extends Controller
         }
         else
         {
-            return back()->withErrors($errors);
+            return back()->withErrors($errors)->withInput(Input::all());
         }
 
 
