@@ -48,6 +48,7 @@
                                     <div class="input-field">
                                         <input id="employee_number" type="text" name="employee_number" value="{{ old('employee_number') }}" class="validate" required>
                                         <label for="employee_number">Employee Number</label>
+                                        <span class="helper-text">Example: EN9999</span>
                                     </div>
                                 </div>
                             </div>
