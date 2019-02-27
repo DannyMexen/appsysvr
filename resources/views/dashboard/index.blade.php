@@ -7,9 +7,7 @@
 
     <!-- Top row -->
     <div class="row">
-        <div class="col s2"></div>
-
-        <!-- Requisitions and vehicles -->
+        <!-- Requisitions, Reports and vehicles -->
         <div class="col s4">
             <div class="card horizontal">
                 <div class="card-image">
@@ -32,6 +30,26 @@
         <div class="col s4">
             <div class="card horizontal">
                 <div class="card-image">
+                    <a href="/reports"><img src="/img/reports.png"></a>
+                </div>
+                <div class="card-stacked">
+                    <div class="blue lighten-3 card-content">
+                        <span class="card-title">Reports</span>
+                        <p>View reports.</p>
+                    </div>
+                    <div class="blue darken-4 card-action">
+                        <div class="center">
+                            <a href="/vehicles">PROCEED</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col s4">
+            <div class="card horizontal">
+                <div class="card-image">
                     <a href="/vehicles"><img src="/img/vehicles.png"></a>
                 </div>
                 <div class="card-stacked">
@@ -48,7 +66,6 @@
             </div>
         </div>
 
-        <div class="col s2"></div>
     </div>
 
     <!-- Second row -->
