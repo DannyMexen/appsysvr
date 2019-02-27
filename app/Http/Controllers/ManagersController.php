@@ -70,11 +70,15 @@ class ManagersController extends Controller
 
 
         // Save username and email first
-        $user->username = request('username');
-        $user->email = request('email');
-        $user->email_verified_at = now();
+        $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255', 'unique:users,username']])['username'];
+        $user->email = request()->validate(['email' => ['required', 'email', 'unique:users,email']])['email'];
+
+
+
+        $user->email_verified_at = now()->toArray()['formatted'];
         $user->password = Hash::make('Welcome@123');
         $user->remember_token = str_random(10);
+
         // $user->save();
 
         // Get user_id of the above record
@@ -83,20 +87,18 @@ class ManagersController extends Controller
 
         // Department details
         $employee->position = 'Manager';
-        $employee->department_id = request('department_id');
+        $employee->department_id = request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required'])['department_id'];
         $employee->manager_id = 1;
 
         // Save all employee details
-        // $employee->save();
+        $employee->save();
 
         // Add to managers table
         $manager->employee_id = Employee::all()->last()->id;
-        // $manager->save();
-
-        return $employee;
+        $manager->save();
 
         // Update new manager for all staff in that department
-/*         DB::table('employees')->where([
+        DB::table('employees')->where([
             ['department_id', $employee->department_id],
             ['position', 'NOT LIKE', '%manager%']
         ])
@@ -107,7 +109,7 @@ class ManagersController extends Controller
             ['position', 'NOT LIKE', '%manager%']
         ])->get();
 
- */        // Update requisitions table for all pending items
+        // Update requisitions table for all pending items
 
         return redirect('/managers');
     }
@@ -196,6 +198,5 @@ class ManagersController extends Controller
         $user->delete();
 
         return redirect('/managers');
-
     }
 }
