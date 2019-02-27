@@ -38,7 +38,14 @@ class DepartmentsController extends Controller
     public function store()
     {
 
-        Department::create(request(['name']));
+        Department::create(
+            request()->validate(
+                [
+                    'name' => ['required', 'min:5', 'max:255', 'unique:departments,name', 'regex:~^[^0-9]+$~'],
+                ],
+
+                ['name.regex' => 'Numbers are not allowed.']
+            ));
 
         return redirect('/departments');
     }

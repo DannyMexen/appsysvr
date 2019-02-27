@@ -101,8 +101,7 @@ class ManagersController extends Controller
         DB::table('employees')->where([
             ['department_id', $employee->department_id],
             ['position', 'NOT LIKE', '%manager%']
-        ])
-            ->update(['manager_id' => $manager->employee_id]);
+        ])->update(['manager_id' => $manager->employee_id]);
 
         $department_staff = DB::table('employees')->where([
             ['department_id', $employee->department_id],

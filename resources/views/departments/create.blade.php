@@ -36,7 +36,7 @@
                     <div class="row">
                         <!-- Name-->
                         <div class="input-field">
-                            <input id="name" type="text" name="name">
+                            <input id="name" type="text" name="name" class="validate" value="{{ old('name') }}">
                             <label for="name">Name</label>
                         </div>
 
@@ -47,9 +47,23 @@
                 </form>
             </div>
         </div>
-
-        <!-- Right column -->
-        <div class="col s3"></div>
     </div>
+
+    <!-- Right column -->
+    <div class="col s3">
+        @if ($errors->any())
+        <div class="red card darken-2">
+            <div class="card-content">
+                <h6 class="center">Please address the following.</h6>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li class="white-text">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        @endif
+    </div>
+
 </div>
 @endsection
