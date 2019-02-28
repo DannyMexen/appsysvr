@@ -9,8 +9,8 @@
     <div class="col s4"></div>
 
     <!-- Middle column -->
-        <div class="col s4">
-    <div class="row">
+    <div class="col s4">
+        <div class="row">
             <div class="card">
                 <div class="card-content">
 

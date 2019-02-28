@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use App\Employee;
 
 class LoginController extends Controller
 {
@@ -48,9 +49,10 @@ class LoginController extends Controller
         if (password_verify($password, $user->password)) {
 
             /**
+             * SPECIAL NOTES REGARDING LOGIN
              * There are three types of user
              * 1. Admin - full access (typically IT, but this will include the Vehicle & Transportation team)
-             * 2. Normal user - only has access to creating requisitions
+             * 2. Employee - only has access to creating requisitions
              * 3. Manager - only has access to pending requisitions under them
              * 
              * Depending on who is logging in, display the appropriate view
@@ -58,14 +60,23 @@ class LoginController extends Controller
              * 1. Admin - display the dashboard
              * 2. Normal user - requisition creation form
              * 3. Manager - pending requisitions
+             * 
+             * Step 1: Retrieve the user's full details
+             * Step 2: Check who they are
+             * Step 3: Redirect them accordingly
              */
 
+            $employee = Employee::where('user_id', $user->id)->firstOrFail();
 
 
-             
-            return $user; 
-        } else
-        {
+            if ((strcmp($employee->position, 'Manager') !== 0)  && (strcmp($employee->position, 'VT Officer') !== 0)) {
+                return redirect('/requisitions/create');
+            } elseif (strcmp($employee->position, 'VT Officer') === 0) {
+                return redirect('/dashboard');
+            } else {
+                return redirect('/requisitions');
+            }
+        } else {
             return back()->withErrors($errors)->withInput(Input::all());
         }
 

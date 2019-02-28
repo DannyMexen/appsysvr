@@ -27,6 +27,7 @@ Resourceful controllers
 7. Employees
 8. Dashboard
 9. Login
+10. Logout
 */
 
 Route::resource('requisitions', 'RequisitionsController');
@@ -38,3 +39,4 @@ Route::resource('departments', 'DepartmentsController');
 Route::resource('employees', 'EmployeesController');
 Route::resource('dashboard', 'DashboardController');
 Route::resource('login', 'LoginController');
+Route::resource('logout', 'LogoutController');
