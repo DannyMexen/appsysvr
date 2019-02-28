@@ -64,6 +64,7 @@ class LoginController extends Controller
              * Step 1: Retrieve the user's full details
              * Step 2: Check who they are
              * Step 3: Redirect them accordingly
+             * Step 4: Put their information in a session
              */
 
             $employee = Employee::where('user_id', $user->id)->firstOrFail();
@@ -71,6 +72,9 @@ class LoginController extends Controller
 
             if ((strcmp($employee->position, 'Manager') !== 0)  && (strcmp($employee->position, 'VT Officer') !== 0)  && (strcmp($employee->position, 'Admin') !== 0)) {
 
+                session(['name' => $employee->first_name]);
+
+                return session('name');
                 return redirect('/requisitions/create');
 
             } elseif ((strcmp($employee->position, 'VT Officer') === 0) || (strcmp($employee->position, 'Admin') === 0)){
