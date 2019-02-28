@@ -5,37 +5,40 @@
 @section('content')
 
 <div class="row">
-<div class="col s4"></div>
-    <div class="col s4">
-        <form method="POST" action="/login">
-            {{ csrf_field() }}
+    <!-- Left column -->
+    <div class="col s4"></div>
 
-            <div class="center">
-                <h4 class="card-panel grey lighten-3">Login</h4>
-            </div>
+    <!-- Middle column -->
+        <div class="col s4">
+    <div class="row">
+            <div class="card">
+                <div class="card-content">
 
-            <div class="center card-panel">
-                <div class="row">
-                    <div class="input-field">
-                        <i class="material-icons prefix">face</i>
-                        <input type="text" id="username" name="username" value="{{ old('username') }}">
-                        <label for="username">Username</label>
-                    </div>
+                    <form method="POST" action="/login">
+                        {{ csrf_field() }}
 
-                    <div class="input-field">
-                        <i class="material-icons prefix">lock</i>
-                        <input type="password" id="password" name="hash">
-                        <label for="password">Password</label>
-                    </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">face</i>
+                            <input type="text" id="username" name="username" value="{{ old('username') }}">
+                            <label for="username">Username</label>
+                        </div>
 
-                    <div class="input-field">
-                        <button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Submit
+                        <div class="input-field">
+                            <i class="material-icons prefix">lock</i>
+                            <input type="password" id="password" name="hash">
+                            <label for="password">Password</label>
+                        </div>
+
+                        <div class="input-field center">
+                            <button class="btn waves-effect waves-light blue darken-2" type="submit" name="action">Login
                                         <i class="material-icons right">send</i></button>
-                    </div>
-                </div>
+                        </div>
 
+                    </form>
+
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 
     <!-- Right column -->

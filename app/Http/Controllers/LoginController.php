@@ -38,7 +38,7 @@ class LoginController extends Controller
     {
 
         $errors = new MessageBag();
-        $errors->add('password', 'The username and/or password is invaild');
+        $errors->add('password', 'The password is invaild');
 
         $username = request()->validate(['username' => ['required', 'exists:users']], ['username.required' => 'The username is required'])['username'];
         $password = request()->validate(['hash' => ['required']], ['hash.required' => 'The password is required'])['hash'];
@@ -46,9 +46,25 @@ class LoginController extends Controller
         $user = User::where('username', $username)->firstOrFail();
 
         if (password_verify($password, $user->password)) {
-            return ('Valid');
-        }
-        else
+
+            /**
+             * There are three types of user
+             * 1. Admin - full access (typically IT, but this will include the Vehicle & Transportation team)
+             * 2. Normal user - only has access to creating requisitions
+             * 3. Manager - only has access to pending requisitions under them
+             * 
+             * Depending on who is logging in, display the appropriate view
+             * 
+             * 1. Admin - display the dashboard
+             * 2. Normal user - requisition creation form
+             * 3. Manager - pending requisitions
+             */
+
+
+
+             
+            return $user; 
+        } else
         {
             return back()->withErrors($errors)->withInput(Input::all());
         }
