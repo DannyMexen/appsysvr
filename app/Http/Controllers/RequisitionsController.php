@@ -9,6 +9,8 @@ use App\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\MessageBag;
 
 class RequisitionsController extends Controller
 {
@@ -52,6 +54,11 @@ class RequisitionsController extends Controller
      */
     public function create()
     {
+
+        if (empty(session('id'))) {
+            $errors = new MessageBag();
+            $errors->add('session','You have to login to first.');
+        }
         // Available vehicles
         $vehicles = Vehicle::all()->where('available', '=', 'Yes');
 
@@ -77,7 +84,7 @@ class RequisitionsController extends Controller
             GROUP BY e.employee_number"
         ));
 
-        return view('requisitions.create', compact('vehicles', 'officers'));
+        return view('requisitions.create', compact('vehicles', 'officers'))->withErrors($errors);
     }
 
     /**
@@ -134,7 +141,6 @@ class RequisitionsController extends Controller
         // Send e-mail
 
         return redirect('/requisitions');
-
     }
 
     /**

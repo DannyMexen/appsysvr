@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 use App\Employee;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LoginController extends Controller
 {
@@ -18,6 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        session()->flush();
         return view('login.index');
     }
 
@@ -69,12 +71,19 @@ class LoginController extends Controller
 
             $employee = Employee::where('user_id', $user->id)->firstOrFail();
 
-
             if ((strcmp($employee->position, 'Manager') !== 0)  && (strcmp($employee->position, 'VT Officer') !== 0)  && (strcmp($employee->position, 'Admin') !== 0)) {
 
-                session(['name' => $employee->first_name]);
+                session([
+                    'id' => $employee->id,
+                    'first_name' => $employee->first_name,
+                    'last_name' => $employee->last_name,
+                    'user_id' => $employee->user_id,
+                    'employee_number' => $employee->employee_number,
+                    'position' => $employee->position,
+                    'department_id' => $employee->department_id,
+                    'manager_id' => $employee->manager_id
+                    ]);
 
-                return session('name');
                 return redirect('/requisitions/create');
 
             } elseif ((strcmp($employee->position, 'VT Officer') === 0) || (strcmp($employee->position, 'Admin') === 0)){

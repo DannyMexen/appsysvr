@@ -1,34 +1,21 @@
 @extends('layout') 
-@extends('navbar')
+@extends('navbar') 
 @section('title', 'New Requisition') 
 @section('content')
 
-<!-- Navbar goes here -->
 
 <!-- Page Layout here -->
 <div class="row">
+    <!-- Left column -->
+    <div class="col s1"></div>
+
 
     <form action="/requisitions" method="post">
         {{ csrf_field() }}
-        <!-- Select a vehicle from a list -->
-        <div class="input-field col s12 m4 l3">
-            <select name="vehicle_id">
-
-                  @php ($count = 1)
-                  <option value="" disabled selected>Choose your option</option>
-                  @foreach ($vehicles as $vehicle)
-                     <option value={{ $vehicle->id }}>{{ $vehicle->registration }} - {{ $vehicle->make }} {{ $vehicle->model }}</option> 
-                     @php ($count++)
-                  @endforeach
-                </select>
-            <label>Select Vehicle</label>
-        </div>
-
         <!-- Main form -->
-        <div class="col s12 m7 l8">
+        <div class="col s7">
 
             <div class="">
-                <div name=@php ($vehicle->id)></div>
                 <div class="card">
                     <div class="card-content">
 
@@ -78,14 +65,48 @@
                                 <input readonly id="manager" name="manager_department" value="Chanda Mulenga - Legal" type="text">
                                 <label for="manager">Manager & Department</label>
                             </div>
-                            <div class="col s12">
-                                <button class="btn waves-effect waves-light" type="submit">Submit<i class="material-icons right">send</i></button>
+
+                            <div class="center">
+                                <button class="blue darken-3 btn waves-effect waves-light" type="submit" {{ (empty(session( 'id')) ? 'disabled': '') }}>Submit<i class="material-icons right">send</i></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Right column -->
+        <div class="col s4">
+            <!-- Select a vehicle from a list -->
+            <div class="input-field">
+                <select name="vehicle_id">
+
+                  @php ($count = 1)
+                  <option value="" disabled selected>Choose your option</option>
+                  @foreach ($vehicles as $vehicle)
+                     <option value={{ $vehicle->id }}>{{ $vehicle->registration }} - {{ $vehicle->make }} {{ $vehicle->model }}</option> 
+                     @php ($count++)
+                  @endforeach
+                </select>
+                <label>Select Vehicle</label>
+            </div>
+
+            <!-- Display errors here -->
+                @if ($errors->any())
+                <div class="red card darken-2">
+                    <div class="card-content">
+                        <h6 class="center">Please address the following.</h6>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li class="white-text">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endif
+        </div>
+
+
     </form>
 </div>
 @endsection
