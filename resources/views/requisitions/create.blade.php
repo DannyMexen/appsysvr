@@ -48,7 +48,7 @@
                         <div class="row">
 
                             <div class="input-field col s6">
-                                <select name="officer_id">
+                                <select name="officer_id" {{ (empty(session( 'id')) ? 'disabled': '') }}>
 
                                             @php ($count = 1)
                                             <option value="" disabled selected>Choose your option</option>
@@ -62,7 +62,7 @@
 
                             <!-- Change to department -->
                             <div class="input-field col s6">
-                                <input readonly id="manager" name="manager_department" value="Chanda Mulenga - Legal" type="text">
+                                <input readonly id="manager" name="manager_department" value=" {{ (empty(session( 'id')) ? '': $manager->first_name . ' ' . $manager->last_name . ' - ' . $department->name) }}" type="text">
                                 <label for="manager">Manager & Department</label>
                             </div>
 
@@ -79,7 +79,7 @@
         <div class="col s4">
             <!-- Select a vehicle from a list -->
             <div class="input-field">
-                <select name="vehicle_id">
+                <select name="vehicle_id" {{ (empty(session( 'id')) ? 'disabled': '') }}>
 
                   @php ($count = 1)
                   <option value="" disabled selected>Choose your option</option>
@@ -93,12 +93,12 @@
 
             <!-- Display errors here -->
                 @if ($errors->any())
-                <div class="red card darken-2">
+                <div class="red card darken-3">
                     <div class="card-content">
-                        <h6 class="center">Please address the following.</h6>
+                        <h6>Please address the following.</h6>
                         <ul>
                             @foreach ($errors->all() as $error)
-                            <li class="white-text">{{ $error }}</li>
+                            <li class="white-text">{!! $error !!}</li>
                             @endforeach
                         </ul>
                     </div>

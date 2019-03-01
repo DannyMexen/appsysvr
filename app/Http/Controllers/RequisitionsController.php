@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Requisition;
 use App\Employee;
+use App\Department;
 use App\Vehicle;
 use App\Officer;
 use Illuminate\Http\Request;
@@ -54,11 +55,19 @@ class RequisitionsController extends Controller
      */
     public function create()
     {
+        $errors = new MessageBag();
 
         if (empty(session('id'))) {
-            $errors = new MessageBag();
-            $errors->add('session','You have to login to first.');
+            $errors->add('session', 'You have to <u><a class="black-text" href="/login">login</a></u> to first.');
+            $manager = [];
+            $department = [];
+        } else {
+            $manager = Employee::where('id', '=', session('manager_id'))->firstOrFail();
+            $department = Department::where('id', '=', session('department_id'))->firstOrFail();
         }
+
+        // return ([session()->all(),$manager,$department]);
+
         // Available vehicles
         $vehicles = Vehicle::all()->where('available', '=', 'Yes');
 
@@ -84,7 +93,7 @@ class RequisitionsController extends Controller
             GROUP BY e.employee_number"
         ));
 
-        return view('requisitions.create', compact('vehicles', 'officers'))->withErrors($errors);
+        return view('requisitions.create', compact('vehicles', 'officers', 'manager', 'department'))->withErrors($errors);
     }
 
     /**
@@ -95,20 +104,22 @@ class RequisitionsController extends Controller
      */
     public function store(Request $request)
     {
-        //return request()->all();
 
         $requisition = new Requisition();
 
-        $requisition->vehicle_id = request('vehicle_id');
-        $requisition->start_date = request('start_date');
-        $requisition->return_date = request('return_date');
-        $requisition->purpose = request('purpose');
-        $requisition->officer_id = request('officer_id');
-        $manager_department = request('manager_department');
+        $requisition->start_date = request()->validate(['start_date' => ['required']])['start_date'];
+        $requisition->return_date = request()->validate(['return_date' => ['required']])['return_date'];
+        $requisition->purpose = request()->validate(['purpose' => ['required']])['purpose'];
+        $requisition->vehicle_id = request()->validate(['vehicle_id' => ['required']])['vehicle_id'];
+        $requisition->officer_id = request()->validate(['officer_id' => ['required']])['officer_id'];
+
+        $manager_department = request()->validate(['manager_department' => ['required']])['manager_department'];
 
 
         // Separate manager and department details
         $manager_department_details = explode(' - ', $manager_department);
+
+
         $manager = $manager_department_details[0];
         $department = $manager_department_details[1];
 
@@ -140,7 +151,7 @@ class RequisitionsController extends Controller
 
         // Send e-mail
 
-        return redirect('/requisitions');
+        return back();
     }
 
     /**

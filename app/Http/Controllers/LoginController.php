@@ -9,6 +9,7 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 use App\Employee;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -20,6 +21,7 @@ class LoginController extends Controller
     public function index()
     {
         session()->flush();
+        Redirect::refresh();
         return view('login.index');
     }
 
