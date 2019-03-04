@@ -104,8 +104,8 @@ class RequisitionsController extends Controller
 
         $requisition = new Requisition();
 
-        $requisition->start_date = request()->validate(['start_date' => ['required', 'date']])['start_date'];
-        $requisition->return_date = request()->validate(['return_date' => ['required']])['return_date'];
+        $requisition->start_date = request()->validate(['start_date' => ['required', 'date','before:end_date']])['start_date'];
+        $requisition->return_date = request()->validate(['return_date' => ['required', 'date','after:start_date']])['return_date'];
         $requisition->purpose = request()->validate(['purpose' => ['required']])['purpose'];
         $requisition->vehicle_id = request()->validate(['vehicle_id' => ['required']],['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
         $requisition->officer_id = request()->validate(['officer_id' => ['required']],['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
