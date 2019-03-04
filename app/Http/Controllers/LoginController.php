@@ -72,29 +72,27 @@ class LoginController extends Controller
 
             $employee = Employee::where('user_id', $user->id)->firstOrFail();
 
+            session([
+                'id' => $employee->id,
+                'first_name' => $employee->first_name,
+                'last_name' => $employee->last_name,
+                'user_id' => $employee->user_id,
+                'employee_number' => $employee->employee_number,
+                'position' => $employee->position,
+                'department_id' => $employee->department_id,
+                'manager_id' => $employee->manager_id
+            ]);
+
+
             if ((strcmp($employee->position, 'Manager') !== 0)  && (strcmp($employee->position, 'VT Officer') !== 0)  && (strcmp($employee->position, 'Admin') !== 0)) {
 
-                session([
-                    'id' => $employee->id,
-                    'first_name' => $employee->first_name,
-                    'last_name' => $employee->last_name,
-                    'user_id' => $employee->user_id,
-                    'employee_number' => $employee->employee_number,
-                    'position' => $employee->position,
-                    'department_id' => $employee->department_id,
-                    'manager_id' => $employee->manager_id
-                    ]);
-
                 return redirect('/requisitions/create');
-
-            } elseif ((strcmp($employee->position, 'VT Officer') === 0) || (strcmp($employee->position, 'Admin') === 0)){
+            } elseif ((strcmp($employee->position, 'VT Officer') === 0) || (strcmp($employee->position, 'Admin') === 0)) {
 
                 return redirect('/dashboard');
-
             } else {
 
                 return redirect('/requisitions');
-
             }
         } else {
             return back()->withErrors($errors)->withInput(Input::all());

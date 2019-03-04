@@ -35,7 +35,7 @@ class RequisitionsController extends Controller
                         AND r.manager_id = em.id
                         AND r.employee_id = e.id
                         AND u.id = e.user_id
-                        AND v.availability_id = 2
+                        AND v.available = 'No'
                 ORDER BY
                         r.created_at
             "
