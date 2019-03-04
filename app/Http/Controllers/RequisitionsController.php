@@ -6,11 +6,8 @@ use App\Requisition;
 use App\Employee;
 use App\Department;
 use App\Vehicle;
-use App\Officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use function GuzzleHttp\Promise\all;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\MessageBag;
 
 class RequisitionsController extends Controller
@@ -38,7 +35,7 @@ class RequisitionsController extends Controller
                         AND r.manager_id = em.id
                         AND r.employee_id = e.id
                         AND u.id = e.user_id
-                        AND v.available = 'No'
+                        AND v.availability_id = 2
                 ORDER BY
                         r.created_at
             "
@@ -107,13 +104,14 @@ class RequisitionsController extends Controller
 
         $requisition = new Requisition();
 
-        $requisition->start_date = request()->validate(['start_date' => ['required']])['start_date'];
+        $requisition->start_date = request()->validate(['start_date' => ['required', 'date']])['start_date'];
         $requisition->return_date = request()->validate(['return_date' => ['required']])['return_date'];
         $requisition->purpose = request()->validate(['purpose' => ['required']])['purpose'];
-        $requisition->vehicle_id = request()->validate(['vehicle_id' => ['required']])['vehicle_id'];
-        $requisition->officer_id = request()->validate(['officer_id' => ['required']])['officer_id'];
+        $requisition->vehicle_id = request()->validate(['vehicle_id' => ['required']],['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
+        $requisition->officer_id = request()->validate(['officer_id' => ['required']],['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
 
         $manager_department = request()->validate(['manager_department' => ['required']])['manager_department'];
+
 
 
         // Separate manager and department details
@@ -141,8 +139,10 @@ class RequisitionsController extends Controller
         $requisition->pending_action = 'Officer';
 
 
+
+        return $requisition;
         // Save requisition
-        $requisition->save();
+        // $requisition->save();
 
         // Make vehicle unavailable
         DB::table('vehicles')

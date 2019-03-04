@@ -79,7 +79,7 @@ class ManagersController extends Controller
         $user->password = Hash::make('Welcome@123');
         $user->remember_token = str_random(10);
 
-        // $user->save();
+        $user->save();
 
         // Get user_id of the above record
         $employee->user_id = User::all()->last()->id;

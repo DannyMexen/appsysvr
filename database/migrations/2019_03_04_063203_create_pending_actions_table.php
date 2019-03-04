@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVehiclesTable extends Migration
+class CreatePendingActionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,20 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles', function (Blueprint $table) {
+        Schema::create('pending_actions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('registration');
-            $table->string('make');
-            $table->string('model');
-            $table->integer('availability_id');
+            $table->string('actor');
             $table->timestamps();
         });
+
+        DB::table('pending_actions')->insert([
+
+            ['actor' => 'Officer'],
+            ['actor' => 'Manager'],
+            ['actor' => 'Employee'],
+            ['actor' => 'Complete'],
+
+        ]);
     }
 
     /**
@@ -30,6 +36,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('pending_actions');
     }
 }

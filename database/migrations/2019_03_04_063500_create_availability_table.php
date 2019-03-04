@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVehiclesTable extends Migration
+class CreateAvailabilityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles', function (Blueprint $table) {
+        Schema::create('availability', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('registration');
-            $table->string('make');
-            $table->string('model');
-            $table->integer('availability_id');
+            $table->string('is_available');
             $table->timestamps();
         });
+        DB::table('availability')->insert([
+
+            ['is_available' => 'Yes'],
+            ['is_available' => 'No']
+
+        ]);
     }
 
     /**
@@ -30,6 +33,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('availability');
     }
 }

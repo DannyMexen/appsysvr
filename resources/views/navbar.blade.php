@@ -8,7 +8,7 @@
                 <li>
                     <form action="/login" method="GET">
                         @csrf
-                        <a class="waves-effect waves-light btn red" href="/login">LOGOUT</a></li>
+                        <a class="waves-effect waves-light btn red" href="/logout">LOGOUT</a></li>
                 </form>
             </ul>
         </div>

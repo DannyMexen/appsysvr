@@ -18,6 +18,18 @@ class CreateDepartmentsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('departments')->insert([
+
+            ['name' => 'Legal'],
+            ['name' => 'Finance'],
+            ['name' => 'Human Resources'],
+            ['name' => 'Marketing'],
+            ['name' => 'Logistics'],
+            ['name' => 'Information Technology']
+
+        ]);
+ 
     }
 
     /**

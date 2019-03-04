@@ -20,7 +20,6 @@ class LoginController extends Controller
      */
     public function index()
     {
-        session()->flush();
         Redirect::refresh();
         return view('login.index');
     }

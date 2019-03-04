@@ -17,12 +17,12 @@ class CreateRequisitionsTable extends Migration
             $table->increments('id');
             $table->integer('vehicle_id');
             $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('return_date');
             $table->text('purpose');
             $table->integer('officer_id');
             $table->integer('employee_id');
             $table->integer('manager_id');
-            $table->string('pending_action');
+            $table->integer('pending_action_id');
             $table->timestamps();
         });
     }

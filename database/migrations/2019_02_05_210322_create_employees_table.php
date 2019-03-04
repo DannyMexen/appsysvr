@@ -20,15 +20,24 @@ class CreateEmployeesTable extends Migration
             $table->integer('user_id');
             $table->string('employee_number');
             $table->string('nrc_number');
-            $table->string('email');
             $table->string('position');
             $table->integer('department_id');
             $table->integer('manager_id');
-            $table->string('status');
             $table->timestamps();
         });
 
-       ;
+        DB::table('employees')->insert([
+
+            'first_name' => 'Managing',
+            'last_name' => 'Director',
+            'user_id' => 1,
+            'employee_number' => 'EN1000',
+            'nrc_number' => '000000/00/0',
+            'position' => 'Managing Director',
+            'department_id' => 0,
+            'manager_id' => 0
+
+        ]);
     }
 
     /**
