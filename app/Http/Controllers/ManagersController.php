@@ -85,7 +85,7 @@ class ManagersController extends Controller
 
         // Department details
         $employee->position = 'Manager';
-        $employee->department_id = request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required'])['department_id'];
+        $employee->department_id = request()->validate(['department_id' => 'required',], ['department_id.required' => 'The department is required'])['department_id'];
         $employee->manager_id = 1;
 
         // Save all employee details

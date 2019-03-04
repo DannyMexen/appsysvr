@@ -25,15 +25,19 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert([
 
-            ['username' => 'managing.director',
-            'email' => 'managing.director@company.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Welcome@123')],
+            [
+                'username' => 'managing.director',
+                'email' => 'managing.director@company.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('managing.director')
+            ],
 
-            ['username' => 'admin',
-            'email' => 'system.administrator@company.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Welcome@123')]
+            [
+                'username' => 'admin',
+                'email' => 'system.administrator@company.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('flask')
+            ]
         ]);
     }
 

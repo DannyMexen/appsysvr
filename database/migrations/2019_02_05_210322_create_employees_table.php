@@ -27,21 +27,25 @@ class CreateEmployeesTable extends Migration
 
         DB::table('employees')->insert([
 
-            ['first_name' => 'Managing',
-            'last_name' => 'Director',
-            'user_id' => 1,
-            'employee_number' => 'EN1000',
-            'position' => 'Managing Director',
-            'department_id' => 0,
-            'manager_id' => 0],
+            [
+                'first_name' => 'Managing',
+                'last_name' => 'Director',
+                'user_id' => 1,
+                'employee_number' => 'EN1000',
+                'position' => 'Managing Director',
+                'department_id' => 0,
+                'manager_id' => 0
+            ],
 
-            ['first_name' => 'System',
-            'last_name' => 'Administrator',
-            'user_id' => 2,
-            'employee_number' => 'EN0000',
-            'position' => 'Admin',
-            'department_id' => 0,
-            'manager_id' => 0]
+            [
+                'first_name' => 'System',
+                'last_name' => 'Administrator',
+                'user_id' => 2,
+                'employee_number' => 'EN0000',
+                'position' => 'Admin',
+                'department_id' => 0,
+                'manager_id' => 0
+            ]
         ]);
     }
 
