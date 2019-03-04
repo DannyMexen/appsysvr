@@ -100,6 +100,7 @@ class EmployeesController extends Controller
         // Save all employee details
         $employee->save();
 
+
         return redirect('/employees');
     }
 

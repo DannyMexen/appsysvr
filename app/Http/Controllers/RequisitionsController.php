@@ -32,10 +32,16 @@ class RequisitionsController extends Controller
                         vehicles v, requisitions r, employees e, employees em, users u
                 WHERE 
                         v.id = r.vehicle_id
-                        AND r.manager_id = em.id
-                        AND r.employee_id = e.id
-                        AND u.id = e.user_id
-                        AND v.available = 'No'
+                        AND 
+                        em.id = r.manager_id 
+                        AND 
+                        e.id = r.employee_id 
+                        AND
+                        u.id = e.user_id
+                        AND
+                        v.available = 'No'
+                        AND
+                        r.pending_action_id = 1
                 ORDER BY
                         r.created_at
             "
@@ -63,7 +69,8 @@ class RequisitionsController extends Controller
             $department = Department::where('id', '=', session('department_id'))->firstOrFail();
         }
 
-        // return ([session()->all(),$manager,$department]);
+        // Pending actions
+        $pending_actions = 
 
         // Available vehicles
         $vehicles = Vehicle::all()->where('available', '=', 'Yes');
@@ -77,8 +84,6 @@ class RequisitionsController extends Controller
                     employees e, employees em, users u, departments d, managers m
 
             WHERE
-                e.department_id = 7
-                AND
                 e.position = 'VT Officer'
                 AND
                 em.id = m.employee_id AND e.manager_id = m.employee_id
@@ -112,47 +117,26 @@ class RequisitionsController extends Controller
 
         } else {
 
-            $requisition->start_date = request()->validate(['start_date' => ['required', 'date  ','before:end_date']])['start_date'];
-            $requisition->return_date = request()->validate(['return_date' => ['required', 'date  ','after:start_date']])['return_date'];
+            $requisition->start_date = request()->validate(['start_date' => ['required', 'date','before:return_date']])['start_date'];
+            $requisition->return_date = request()->validate(['return_date' => ['required', 'date']])['return_date'];
         }
 
         $requisition->purpose = request()->validate(['purpose' => ['required']])['purpose'];
-        $requisition->vehicle_id = request()->validate(['vehicle_id' => ['required'] ],['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
-        $requisition->officer_id = request()->validate(['officer_id' => ['required'] ],['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
-
-        $manager_department = request()->validate(['manager_department' => ['required']])['manager_department'];
+        $requisition->vehicle_id = (int)request()->validate(['vehicle_id' => ['required'] ],['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
+        $requisition->officer_id = (int)request()->validate(['officer_id' => ['required'] ],['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
 
 
 
-        // Separate manager and department details
-        $manager_department_details = explode(' - ', $manager_department);
+        // Requester's  and manager's IDs
+        $requisition->employee_id = session('id');
+        $requisition->manager_id = session('manager_id');
 
-
-        $manager = $manager_department_details[0];
-        $department = $manager_department_details[1];
-
-        // Department ID
-        $department_id = DB::table('departments')->select('id')
-            ->where('name', '=', $department)
-            ->get()[0]->id;
-
-
-        // Requester's ID
-        $requisition->employee_id = 18;
-        // Manager ID
-        $requisition->manager_id = DB::table('employees')->select('id')
-            ->where([
-                ['department_id', '=', $department_id],
-                ['position', '=', 'Manager']
-            ])->get()[0]->id;
         // Pending Action
-        $requisition->pending_action = 'Officer';
+        $requisition->pending_action_id = 1;
 
 
-
-        return $requisition;
         // Save requisition
-        // $requisition->save();
+        $requisition->save();
 
         // Make vehicle unavailable
         DB::table('vehicles')
@@ -161,7 +145,8 @@ class RequisitionsController extends Controller
 
         // Send e-mail
 
-        return back();
+        // Success message
+        return redirect()->back()->with('message', 'Success. Please logout if finished.');
     }
 
     /**
@@ -172,16 +157,18 @@ class RequisitionsController extends Controller
      */
     public function show($id)
     {
+        session(['requisition_id' => (int)$id]);
+
         $requisition = DB::select(DB::raw("
 
             SELECT 
                         v.registration, v.make, v.model,
                         r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
 	                    concat(eo.first_name, ' ', eo.last_name) AS officer, concat(e.first_name, ' ', e.last_name) AS requester, concat(em.first_name, ' ', em.last_name) AS manager,
-                        r.pending_action
+                        p.actor
 
             FROM
-	                    vehicles v, requisitions r, employees eo, employees e, employees em
+	                    vehicles v, requisitions r, employees eo, employees e, employees em, pending_actions p
 
             WHERE
 	                    r.vehicle_id = v.id
@@ -191,6 +178,8 @@ class RequisitionsController extends Controller
                         r.employee_id = e.id
                         AND
                         r.manager_id = em.id
+                        AND
+                        r.pending_action_id = p.id
                         AND
                         r.id = $id
         "))[0];

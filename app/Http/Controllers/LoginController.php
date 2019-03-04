@@ -92,7 +92,7 @@ class LoginController extends Controller
                 return redirect('/dashboard');
             } else {
 
-                return redirect('/requisitions');
+                return redirect('/managersrequisitions');
             }
         } else {
             return back()->withErrors($errors)->withInput(Input::all());

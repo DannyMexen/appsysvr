@@ -23,8 +23,6 @@ class OfficersController extends Controller
             FROM employees e, employees em, users u, departments d, managers m
 
             WHERE
-                e.department_id = 7
-                AND
                 e.position = 'VT Officer'
                 AND
                 em.id = m.employee_id AND e.manager_id = m.employee_id

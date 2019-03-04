@@ -28,6 +28,12 @@ Resourceful controllers
 8. Dashboard
 9. Login
 10. Logout
+11. Approvals 
+10. Rejections 
+11. Requisitions (Manager) 
+12. Approvals (Manager) 
+13. Rejections (Manager) 
+ 
 */
 
 Route::resource('requisitions', 'RequisitionsController');
@@ -40,3 +46,8 @@ Route::resource('employees', 'EmployeesController');
 Route::resource('dashboard', 'DashboardController');
 Route::resource('login', 'LoginController');
 Route::resource('logout', 'LogoutController');
+Route::resource('approvals', 'ApprovalsController');
+Route::resource('rejections', 'RejectionsController');
+Route::resource('managersrequisitions', 'ManagersRequisitionsController');
+Route::resource('managersapprovals', 'ManagersApprovalsController');
+Route::resource('managersrejections', 'ManagersRejectionsController');

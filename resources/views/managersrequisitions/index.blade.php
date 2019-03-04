@@ -6,23 +6,7 @@
 
 <div class="row">
     <!-- Left column -->
-    <div class="col s1">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <a class="blue darken-4 btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
-                </div>
-
-                <div class="row"></div>
-
-                <div class="col s12">
-                    <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="New Requisition"
-                        href="/requisitions/create"><i class="material-icons left">add</i></a>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <div class="col s1"></div>
 
 
 
@@ -57,9 +41,9 @@
                                 <td>{{ $requisition->start_date}}</td>
                                 <td>{{ $requisition->return_date}}</td>
                                 <td>{{ $requisition->employee_number}}</td>
-                                <td><a class="waves-effect waves-light blue btn" href="/requisitions/{{ $requisition->id }}">Details</a></td>
-                                <td><a class="waves-effect waves-light green btn" href="/approvals">Approve</a></td>
-                                <td><a class="waves-effect waves-light red btn" href="/rejections">Reject</a></td>
+                                <td><a class="waves-effect waves-light blue btn" href="/managersrequisitions/{{ $requisition->id }}">Details</a></td>
+                                <td><a class="waves-effect waves-light green btn" href="/managersapprovals">Approve</a></td>
+                                <td><a class="waves-effect waves-light red btn" href="/managersrejections">Reject</a></td>
                                 @php ($count++)
                             </tr>
                             @endforeach
