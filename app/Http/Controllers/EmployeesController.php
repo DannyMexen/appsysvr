@@ -31,6 +31,8 @@ class EmployeesController extends Controller
                 e.department_id = d.id
                 AND
                 e.position NOT LIKE '%Manager%'
+                AND
+                e.employee_number NOT LIKE '%EN9999%'
 
             GROUP BY e.employee_number
             ORDER BY d.name

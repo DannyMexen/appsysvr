@@ -59,7 +59,6 @@ class ManagersController extends Controller
     {
 
         $employee = new Employee();
-
         $user = new User();
         $manager = new Manager();
 
@@ -72,7 +71,6 @@ class ManagersController extends Controller
         // Save username and email first
         $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255', 'unique:users,username']])['username'];
         $user->email = request()->validate(['email' => ['required', 'email', 'unique:users,email']])['email'];
-
 
 
         $user->email_verified_at = now()->toArray()['formatted'];
@@ -103,10 +101,14 @@ class ManagersController extends Controller
             ['position', 'NOT LIKE', '%manager%']
         ])->update(['manager_id' => $manager->employee_id]);
 
+        /*
         $department_staff = DB::table('employees')->where([
             ['department_id', $employee->department_id],
             ['position', 'NOT LIKE', '%manager%']
         ])->get();
+        */
+        
+        
 
         // Update requisitions table for all pending items
 

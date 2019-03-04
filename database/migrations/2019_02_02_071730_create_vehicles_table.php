@@ -18,7 +18,7 @@ class CreateVehiclesTable extends Migration
             $table->string('registration');
             $table->string('make');
             $table->string('model');
-            $table->integer('availability_id');
+            $table->string('available');
             $table->timestamps();
         });
     }
