@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
@@ -83,7 +84,14 @@ class ChangePasswordController extends Controller
 
         if ((password_verify($old_password, $user->password))) {
 
-        return  ([request()->all(), $user, session()->all()]);
+        $user->password = Hash::make(request('new_password'));
+
+        $user->save();
+
+        session()->flush();
+        return redirect('/login');
+
+        
         } else {
 
             return back()->withErrors($errors);

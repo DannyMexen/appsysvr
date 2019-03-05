@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col s12">
                     <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="New Requisition"
-                        href="/requisitions/create"><i class="material-icons left">lock_open</i></a>
+                        href="/requisitions/create"><i class="material-icons left">arrow_back</i></a>
                 </div>
                 <div class="row"></div>
             </div>
@@ -56,7 +56,7 @@
 
 
                         <div class="center">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+                            <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
                         </div>
                     </form>
                 </div>
