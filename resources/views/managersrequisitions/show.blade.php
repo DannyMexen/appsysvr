@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
+                    <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
                         href="/managersrequisitions"><i class="material-icons left">list</i></a>
                 </div>
                 <div class="row"></div>
