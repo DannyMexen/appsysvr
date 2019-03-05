@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ManagersApprovalsController extends Controller
+class ReturnVehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,6 @@ class ManagersApprovalsController extends Controller
     public function index()
     {
         //
-        DB::table('requisitions')
-            ->where('id', session('requisition_id'))
-            ->update(['pending_action_id' => 3]);
-
-            // Send emails
-
-        return redirect('/managersrequisitions');
-
     }
 
     /**

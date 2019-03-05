@@ -33,6 +33,8 @@ Resourceful controllers
 11. Requisitions (Manager) 
 12. Approvals (Manager) 
 13. Rejections (Manager) 
+14. Change Password
+13. Return Vehicles
  
 */
 
@@ -51,3 +53,5 @@ Route::resource('rejections', 'RejectionsController');
 Route::resource('managersrequisitions', 'ManagersRequisitionsController');
 Route::resource('managersapprovals', 'ManagersApprovalsController');
 Route::resource('managersrejections', 'ManagersRejectionsController');
+Route::resource('changepassword', 'ChangePasswordController');
+Route::resource('returnvehicle', 'ReturnVehicleController');

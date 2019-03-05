@@ -79,11 +79,11 @@
                                 <label>First Line Approval</label>
                             </div>
 
-                            <!-- Change to department -->
+                            <!-- Manager and Department -->
                             <div class="input-field col s6">
                                 <input readonly id="manager" name="manager_department" value=" {{ (empty(session( 'id')) ? '': $manager->first_name . ' ' . $manager->last_name . ' - ' . $department->name) }}"
                                     type="text">
-                                <label for="manager">Manager & Department</label>
+                                <label for="manager">Manager - Department</label>
                             </div>
 
                             <div class="center">
