@@ -12,15 +12,25 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers" href="/managers"><i class="material-icons">group_add</i></a>
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Managers"
+                            href="/managers"><i class="material-icons">group_add</i></a>
                     </div>
                 </div>
                 <div class="row"></div>
                 <div class="col s12">
                     <div class="">
+                        <form action="/resetpassword/{{ $manager->id }}" method="POST">
+                            @method('PATCH') @csrf
+                            <button class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Reset Password"><i class="material-icons">security</i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row"></div>
+                <div class="col s12">
+                    <div class="">
                         <form action="/managers/{{ $manager->id }}" method="POST">
-                            @method('DELETE')
-                            @csrf
+                            @method('DELETE') @csrf
                             <button class="red btn-floating waves-effect waves-light btn-large tooltipped" data-positon="bottom" data-tooltip="Delete"><i class="material-icons">delete</i></button>
                         </form>
                     </div>
