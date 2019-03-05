@@ -6,7 +6,17 @@
 
 <div class="row">
     <!-- Left column -->
-    <div class="col s1"></div>
+    <div class="col s1">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Change Password"
+                        href="/changepassword"><i class="material-icons left">lock_open</i></a>
+                </div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
 
 
 
