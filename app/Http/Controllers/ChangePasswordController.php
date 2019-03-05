@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\MessageBag;
 
 class ChangePasswordController extends Controller
 {
@@ -71,15 +72,16 @@ class ChangePasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $errors = new MessageBag();
+        $errors->add('password', 'The password is invaild');
+
+        $old_password = request()->validate(['old_password' => ['required']], ['old_password.required' => 'The current password is required'])['old_password'];
+        $new_password = request()->validate(['new_password' => ['required', 'confirmed']], ['new_password.required' => 'The new password is required'])['new_password'];
+        $new_password_confirmation = request()->validate(['new_password_confirmation' => ['required', 'same:new_password']], ['new_password_confirmation.required' => 'The new password must be confirmed'])['new_password_confirmation'];
+
         $user = User::findOrFail(session('user_id'));
 
-        return ([ request()->all(), $user, session()->all() ]);
-
-    
-
-
-
+        return ([request()->all(), $user, session()->all()]);
     }
 
     /**

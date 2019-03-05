@@ -40,15 +40,15 @@
                         <!-- New Password -->
                         <div class="row">
                             <div class="input-field"></div>
-                            <input id="new_password" name="new_password" type="password" class="validate" required>
+                            <input id="new_password" name="new_password" type="password" class="validate" >
                             <label for="new_password">New Password</label>
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="row">
                             <div class="input-field"></div>
-                            <input id="confirm_password" name="confirm_password" type="password" class="validate" required>
-                            <label for="confirm_password">Confirm Password</label>
+                            <input id="new_password_confirmation" name="new_password_confirmation" type="password" class="validate">
+                            <label for="new_password_confirmation">Confirm Password</label>
                         </div>
 
 

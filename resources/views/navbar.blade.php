@@ -10,7 +10,7 @@
                 <li>
                     <form action="/login" method="GET">
                         @csrf
-                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-tooltip="Logout" href="/logout"><i class="material-icons">directions_run</i></a>
+                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red darken-3 tooltipped" data-position="bottom" data-tooltip="Logout" href="/logout"><i class="material-icons">directions_run</i></a>
                 </li>
                 </form>
             </ul>
