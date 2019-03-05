@@ -81,7 +81,13 @@ class ChangePasswordController extends Controller
 
         $user = User::findOrFail(session('user_id'));
 
-        return ([request()->all(), $user, session()->all()]);
+        if ((password_verify($old_password, $user->password))) {
+
+        return  ([request()->all(), $user, session()->all()]);
+        } else {
+
+            return back()->withErrors($errors);
+        }
     }
 
     /**
