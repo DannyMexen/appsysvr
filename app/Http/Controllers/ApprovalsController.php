@@ -20,6 +20,8 @@ class ApprovalsController extends Controller
             ->where('id', session('requisition_id'))
             ->update(['pending_action_id' => 2]);
 
+            // Send emails
+
         return redirect('/requisitions');
    }
 

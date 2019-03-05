@@ -42,8 +42,6 @@
                                 <td>{{ $requisition->return_date}}</td>
                                 <td>{{ $requisition->employee_number}}</td>
                                 <td><a class="waves-effect waves-light blue btn" href="/managersrequisitions/{{ $requisition->id }}">Details</a></td>
-                                <td><a class="waves-effect waves-light green btn" href="/managersapprovals">Approve</a></td>
-                                <td><a class="waves-effect waves-light red btn" href="/managersrejections">Reject</a></td>
                                 @php ($count++)
                             </tr>
                             @endforeach

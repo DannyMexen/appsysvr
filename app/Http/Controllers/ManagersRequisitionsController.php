@@ -81,7 +81,35 @@ class ManagersRequisitionsController extends Controller
      */
     public function show($id)
     {
-        //
+        session(['requisition_id' => (int)$id]);
+
+        $requisition = DB::select(DB::raw("
+
+            SELECT 
+                        v.registration, v.make, v.model,
+                        r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
+	                    concat(eo.first_name, ' ', eo.last_name) AS officer, concat(e.first_name, ' ', e.last_name) AS requester, concat(em.first_name, ' ', em.last_name) AS manager,
+                        p.actor
+
+            FROM
+	                    vehicles v, requisitions r, employees eo, employees e, employees em, pending_actions p
+
+            WHERE
+	                    r.vehicle_id = v.id
+                        AND
+                        r.officer_id = eo.id
+                        AND
+                        r.employee_id = e.id
+                        AND
+                        r.manager_id = em.id
+                        AND
+                        r.pending_action_id = p.id
+                        AND
+                        r.id = $id
+        "))[0];
+
+        return view('managersrequisitions.show', compact('requisition'));
+    
     }
 
     /**

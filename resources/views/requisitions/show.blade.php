@@ -13,7 +13,20 @@
                     <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
                         href="/requisitions"><i class="material-icons left">list</i></a>
                 </div>
+
                 <div class="row"></div>
+                <div class="col s12">
+                    <a class="green btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Approve"
+                        href="/approvals"><i class="material-icons left">check</i></a>
+                </div>
+
+                <div class="row"></div>
+                <div class="col s12">
+                    <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject"
+                        href="/rejections"><i class="material-icons left">clear</i></a>
+                </div>
+                <div class="row"></div>
+
             </div>
         </div>
     </div>
