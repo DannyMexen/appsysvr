@@ -19,8 +19,8 @@
 
                 <div class="col s12">
                     <div class="">
-                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Return Vehicle"
-                            href="/return"><i class="material-icons left">update</i></a>
+                        <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Return Vehicle(s)"
+                            href="/returnvehicles"><i class="material-icons left">update</i></a>
                     </div>
                     <div class="row"></div>
                 </div>

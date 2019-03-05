@@ -54,4 +54,4 @@ Route::resource('managersrequisitions', 'ManagersRequisitionsController');
 Route::resource('managersapprovals', 'ManagersApprovalsController');
 Route::resource('managersrejections', 'ManagersRejectionsController');
 Route::resource('changepassword', 'ChangePasswordController');
-Route::resource('returnvehicle', 'ReturnVehicleController');
+Route::resource('returnvehicles', 'ReturnVehiclesController');
