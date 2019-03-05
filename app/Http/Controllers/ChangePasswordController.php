@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
 class ChangePasswordController extends Controller
 {
@@ -35,8 +36,8 @@ class ChangePasswordController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dd('Za return-o');
+
+        // Validation
     }
 
     /**
@@ -70,7 +71,15 @@ class ChangePasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $user = User::findOrFail(session('user_id'));
+
+        return ([ request()->all(), $user, session()->all() ]);
+
+    
+
+
+
     }
 
     /**
