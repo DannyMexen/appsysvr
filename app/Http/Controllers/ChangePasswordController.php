@@ -13,8 +13,8 @@ class ChangePasswordController extends Controller
      */
     public function index()
     {
-        //
-        dd('Get Mex');
+
+        return view('changepassword.index');
     }
 
     /**
@@ -36,6 +36,7 @@ class ChangePasswordController extends Controller
     public function store(Request $request)
     {
         //
+        dd('Za return-o');
     }
 
     /**

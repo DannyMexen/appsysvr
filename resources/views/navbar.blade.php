@@ -4,7 +4,7 @@
             @if (Session::has('id'))
             <a href="#" class="brand-logo left">{{ Session::get('first_name') . ' ' . Session::get('last_name') }}</a> @endif
 
-            <a href="#" class="brand-logo center">AppSys</a>
+            <a href="#" class="brand-logo center">Vehicle Requisition</a>
             <ul class="right hide-on-med-and-down">
                 <div class="row"></div>
                 <li>
