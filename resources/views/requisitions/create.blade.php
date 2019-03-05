@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col s12">
                     <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Change Password"
-                        href="/change"><i class="material-icons left">lock_open</i></a>
+                        href="/changepassword"><i class="material-icons left">lock_open</i></a>
                 </div>
                 <div class="row"></div>
 

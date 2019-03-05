@@ -14,6 +14,7 @@ class ChangePasswordController extends Controller
     public function index()
     {
         //
+        dd('Get Mex');
     }
 
     /**
