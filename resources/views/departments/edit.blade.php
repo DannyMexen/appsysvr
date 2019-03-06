@@ -45,8 +45,7 @@
         <div class="card">
             <div class="card-content">
                 <form class="" action="/departments/{{ $department->id }}" method="POST">
-                    @method('PATCH')
-                    @csrf
+                    @method('PATCH') @csrf
                     <div class="row">
                         <!-- Name -->
                         <div class="input-field">
@@ -64,7 +63,21 @@
             </div>
         </div>
     </div>
+
     <!-- Right column -->
-    <div class="col s3"></div>
+    <div class="col s3">
+        @if ($errors->any())
+        <div class="red card darken-2">
+            <div class="card-content">
+                <h6 class="">Please address the following.</h6>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li class="white-text">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        @endif
+    </div>
 </div>
 @endsection

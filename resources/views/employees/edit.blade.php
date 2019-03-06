@@ -45,7 +45,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Middle colum -->
     <div class="col s8">
@@ -138,8 +137,8 @@
                 </form>
             </div>
         </div>
-
     </div>
+
     <!-- Right column -->
     @if (session()->has('message'))
     <div class="col s3">
