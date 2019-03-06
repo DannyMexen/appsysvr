@@ -84,13 +84,17 @@ class VehiclesController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        // $vehicle->registration = request()->validate(['registration' => ['required', 'min:5', 'max:255', 'unique:vehicles,registration']]);
+        if ($vehicle->registration == request('registration')) {
+            $vehicle->registration = request()->validate(['registration' => ['required', 'min:5', 'max:255']]);
+        } else {
+            $vehicle->registration = request()->validate(['registration' => ['required', 'min:5', 'max:255', 'unique:vehicles,registration']]);
+        }
 
         $vehicle->make = request()->validate(['make' => ['required', 'min:3', 'max:255']]);
 
         $vehicle->model = request()->validate(['model' => ['required', 'min:2', 'max:255']]);
 
-        $vehicle->update(request(['make', 'model']));
+        $vehicle->update(request(['registration','make', 'model']));
 
         return redirect('/vehicles');
     }

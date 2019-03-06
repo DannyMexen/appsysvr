@@ -48,7 +48,7 @@
                         <div class="row">
                             <!-- Registration -->
                             <div class="input-field">
-                                <input id="registration" type="text" name="registration" value="{{ $vehicle->registration }}" disabled>
+                                <input id="registration" type="text" name="registration" value="{{ $vehicle->registration }}">
                                 <label for="registration">Registration</label>
                             </div>
 
