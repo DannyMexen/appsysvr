@@ -154,17 +154,40 @@ class EmployeesController extends Controller
      */
     public function update(Employee $employee, Request $request)
     {
-
         $user = User::findOrFail($employee->user_id);
 
+        // Employee number, first name and last name
+        if ($employee->employee_number == request('employee_number')) {
 
-        $employee->update(request(['employee_number', 'first_name', 'last_name', 'position']));
+            $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~']])['employee_number'];
+        } else {
+            $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']])['employee_number'];
+        }
 
-         $user->username = request('username');
-         $user->email = request('email');
+        $employee->first_name = request()->validate(['first_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['first_name'];
+        $employee->last_name = request()->validate(['last_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['last_name'];
 
-        if (request('department_id') !== null) {
-            $employee->department_id = (int)request('department_id');
+        // username and email first
+        if ($user->username == request('username')) {
+            $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255']])['username'];
+        } else {
+
+            $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255', 'unique:users,username']])['username'];
+        }
+
+        if ($user->email == request('email')) {
+            $user->email = request()->validate(['email' => ['required', 'min:5', 'max:255']])['email'];
+        } else {
+
+            $user->email = request()->validate(['email' => ['required', 'min:5', 'max:255', 'unique:users,email']])['email'];
+        }
+
+
+        // Department details
+        $employee->position = request()->validate(['position' => 'required', 'min:7', 'max:255'])['position'];
+
+        if (!empty(request('department_id'))) {
+            $employee->department_id = (int)request()->validate(['department_id' => 'required'], ['department_id.required' => 'The department is required'])['department_id'];
 
             $employee->manager_id = DB::table('employees')
                 ->select('id')
@@ -174,6 +197,7 @@ class EmployeesController extends Controller
                 ])->get()[0]->id;
         }
 
+        // Save all employee details
         $user->save();
         $employee->save();
 
