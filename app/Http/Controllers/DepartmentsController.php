@@ -62,7 +62,6 @@ class DepartmentsController extends Controller
     public function show(Department $department)
     {
         //
-
         
     }
 
@@ -74,7 +73,6 @@ class DepartmentsController extends Controller
      */
     public function edit(Department $department)
     {
-        
         return view('departments.edit', compact('department'));
     }
 
@@ -87,6 +85,8 @@ class DepartmentsController extends Controller
      */
     public function update(Request $request, Department $department)
     {
+
+
         $department->name = request()->validate(
             [
                 'name' => ['required', 'min:5', 'max:255', 'unique:departments,name', 'regex:~^[^0-9]+$~']
@@ -95,9 +95,7 @@ class DepartmentsController extends Controller
             ['name.regex' => 'Numbers are not allowed.']
         );
 
-
         $department->update(request(['name']));
-
 
         return redirect('/departments');
     }

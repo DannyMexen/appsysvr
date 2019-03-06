@@ -14,6 +14,10 @@ class ManagersRequisitionsController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         $manager_id = session('id');
 
         $requisitions = DB::select(DB::raw(
@@ -49,7 +53,6 @@ class ManagersRequisitionsController extends Controller
 
 
         return view('managersrequisitions.index', compact('requisitions'));
-
     }
 
     /**
@@ -81,6 +84,10 @@ class ManagersRequisitionsController extends Controller
      */
     public function show($id)
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         session(['requisition_id' => (int)$id]);
 
         $requisition = DB::select(DB::raw("
@@ -109,7 +116,6 @@ class ManagersRequisitionsController extends Controller
         "))[0];
 
         return view('managersrequisitions.show', compact('requisition'));
-    
     }
 
     /**

@@ -19,6 +19,10 @@ class ManagersController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         $managers = DB::select(DB::raw(
             "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, d.name as department
         
@@ -45,6 +49,9 @@ class ManagersController extends Controller
      */
     public function create()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
         $departments = Department::all();
         return view('managers.create', compact('departments'));
     }
@@ -134,6 +141,9 @@ class ManagersController extends Controller
      */
     public function edit($id)
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
         $manager = DB::select(DB::raw(
             "SELECT e.id, e.first_name, e.last_name, e.employee_number, e.position, u.username, u.email, d.name as department
         

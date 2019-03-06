@@ -13,6 +13,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+         if (empty(session('id')) || strcmp(session('position'), 'Admin') !== 0 || strcmp(session('position'), 'Admin') !== 0) {
+            abort(403);
+        }
+
         return view('dashboard.index');
     }
 

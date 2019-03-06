@@ -18,6 +18,9 @@ class EmployeesController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
         $employees = DB::select(DB::raw(
             "SELECT e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
             
@@ -49,6 +52,9 @@ class EmployeesController extends Controller
      */
     public function create()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
         $departments = Department::all();
 
         return view('employees.create', compact('departments'));
@@ -123,6 +129,9 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee)
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
         $departments = Department::all();
 
         $employee = DB::select(DB::raw("

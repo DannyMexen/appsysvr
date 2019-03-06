@@ -16,6 +16,9 @@ class ChangePasswordController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
 
         return view('changepassword.index');
     }
@@ -84,14 +87,12 @@ class ChangePasswordController extends Controller
 
         if ((password_verify($old_password, $user->password))) {
 
-        $user->password = Hash::make(request('new_password'));
+            $user->password = Hash::make(request('new_password'));
 
-        $user->save();
+            $user->save();
 
-        session()->flush();
-        return redirect('/login');
-
-        
+            session()->flush();
+            return redirect('/login');
         } else {
 
             return back()->withErrors($errors);

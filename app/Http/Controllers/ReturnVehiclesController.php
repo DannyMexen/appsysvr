@@ -16,6 +16,10 @@ class ReturnVehiclesController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
 
         $employee_id = session('id');
 

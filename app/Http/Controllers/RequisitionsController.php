@@ -19,6 +19,10 @@ class RequisitionsController extends Controller
      */
     public function index()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         $requisitions = DB::select(DB::raw(
             "
                 SELECT 
@@ -58,6 +62,10 @@ class RequisitionsController extends Controller
      */
     public function create()
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         $errors = new MessageBag();
 
         if (empty(session('id'))) {
@@ -70,10 +78,10 @@ class RequisitionsController extends Controller
         }
 
         // Pending actions
-        $pending_actions = 
+        $pending_actions =
 
-        // Available vehicles
-        $vehicles = Vehicle::all()->where('available', '=', 'Yes');
+            // Available vehicles
+            $vehicles = Vehicle::all()->where('available', '=', 'Yes');
 
         // VT Officers
         $officers = DB::select(DB::raw(
@@ -112,18 +120,17 @@ class RequisitionsController extends Controller
 
         if (request('start_date') == request('return_date')) {
 
-        $requisition->start_date = request()->validate(['start_date' => ['required', 'date']])['start_date'];
-        $requisition->return_date = request()->validate(['return_date' => ['required', 'date']] )['return_date'];
-
+            $requisition->start_date = request()->validate(['start_date' => ['required', 'date']])['start_date'];
+            $requisition->return_date = request()->validate(['return_date' => ['required', 'date']])['return_date'];
         } else {
 
-            $requisition->start_date = request()->validate(['start_date' => ['required', 'date','before:return_date']])['start_date'];
+            $requisition->start_date = request()->validate(['start_date' => ['required', 'date', 'before:return_date']])['start_date'];
             $requisition->return_date = request()->validate(['return_date' => ['required', 'date']])['return_date'];
         }
 
         $requisition->purpose = request()->validate(['purpose' => ['required']])['purpose'];
-        $requisition->vehicle_id = (int)request()->validate(['vehicle_id' => ['required'] ],['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
-        $requisition->officer_id = (int)request()->validate(['officer_id' => ['required'] ],['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
+        $requisition->vehicle_id = (int)request()->validate(['vehicle_id' => ['required']], ['vehicle_id.required' => 'The vehicle is required'])['vehicle_id'];
+        $requisition->officer_id = (int)request()->validate(['officer_id' => ['required']], ['officer_id.required' => 'The First Line Approval officer is required'])['officer_id'];
 
 
 
@@ -157,6 +164,10 @@ class RequisitionsController extends Controller
      */
     public function show($id)
     {
+        if (empty(session('id'))) {
+            abort(403);
+        }
+
         session(['requisition_id' => (int)$id]);
 
         $requisition = DB::select(DB::raw("
