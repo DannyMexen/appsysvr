@@ -1,6 +1,7 @@
+<?php $errors = Session::has('errors') ? Session::get('errors') : $errors; ?> 
 @extends('layout') 
 @extends('navbar') 
-@section('title', 'Requisitions') 
+@section('title', 'Return Vehicle(s)') 
 @section('content')
 
 
@@ -10,8 +11,8 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Change Password"
-                        href="/changepassword"><i class="material-icons left">lock_open</i></a>
+                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="New Requisition"
+                        href="/requisitions/create"><i class="material-icons left">arrow_back</i></a>
                 </div>
                 <div class="row"></div>
             </div>
@@ -40,7 +41,7 @@
                                 <th>Vehicle</th>
                                 <th>Start Date</th>
                                 <th>Return Date</th>
-                                <th>Requested By</th>
+                                <th>Purpose</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,8 +51,8 @@
                                 <td>{{ $requisition->registration}}</td>
                                 <td>{{ $requisition->start_date}}</td>
                                 <td>{{ $requisition->return_date}}</td>
-                                <td>{{ $requisition->employee_number}}</td>
-                                <td><a class="waves-effect waves-light blue btn" href="/managersrequisitions/{{ $requisition->id }}">Details</a></td>
+                                <td>{{ $requisition->purpose}}</td>
+                                <td><a class="waves-effect waves-light green btn" href="/return-vehicles/{{ $requisition->id }}">Return</a></td>
                                 @php ($count++)
                             </tr>
                             @endforeach

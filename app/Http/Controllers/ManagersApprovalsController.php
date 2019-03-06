@@ -21,7 +21,7 @@ class ManagersApprovalsController extends Controller
 
             // Send emails
 
-        return redirect('/managersrequisitions');
+        return redirect('/managers-requisitions');
 
     }
 

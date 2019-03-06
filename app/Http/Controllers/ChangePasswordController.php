@@ -20,7 +20,7 @@ class ChangePasswordController extends Controller
             abort(403);
         }
 
-        return view('changepassword.index');
+        return view('change_password.index');
     }
 
     /**

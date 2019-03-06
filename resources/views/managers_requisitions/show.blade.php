@@ -11,18 +11,18 @@
             <div class="row">
                 <div class="col s12">
                     <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
-                        href="/managersrequisitions"><i class="material-icons left">list</i></a>
+                        href="/managers-requisitions"><i class="material-icons left">list</i></a>
                 </div>
                 <div class="row"></div>
 
                 <div class="col s12">
                     <a class="green btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Approve"
-                        href="/managersapprovals"><i class="material-icons left">check</i></a>
+                        href="/managers-approvals"><i class="material-icons left">check</i></a>
                 </div>
 
                 <div class="row"></div>
                 <div class="col s12">
-                    <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject" href="/managersrejections"><i class="material-icons left">clear</i></a>
+                    <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject" href="/managers-rejections"><i class="material-icons left">clear</i></a>
                 </div>
                 <div class="row"></div>
 

@@ -26,7 +26,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-content container">
-                    <form action="/changepassword/{{ Session::get('user_id') }}" method="POST">
+                    <form action="/change-password/{{ Session::get('user_id') }}" method="POST">
                         @csrf
                         @method('PATCH')
 

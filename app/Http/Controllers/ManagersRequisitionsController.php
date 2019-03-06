@@ -52,7 +52,7 @@ class ManagersRequisitionsController extends Controller
         ));
 
 
-        return view('managersrequisitions.index', compact('requisitions'));
+        return view('managers_requisitions.index', compact('requisitions'));
     }
 
     /**
@@ -115,7 +115,7 @@ class ManagersRequisitionsController extends Controller
                         r.id = $id
         "))[0];
 
-        return view('managersrequisitions.show', compact('requisition'));
+        return view('managers_requisitions.show', compact('requisition'));
     }
 
     /**
