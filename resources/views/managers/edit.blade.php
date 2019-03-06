@@ -6,7 +6,8 @@
 
 
 <div class="row">
-    <!-- Left column -->@if (session()->has('message'))
+    <!-- Left column -->
+    @if (session()->has('message') || $errors->any())
     <div class="col s1">
         @else
         <div class="col s2">
@@ -140,6 +141,19 @@
         </div>
         @else
         <div class="col s2"></div>
+        @endif @if ($errors->any())
+        <div class="col s3">
+            <div class="red card darken-2">
+                <div class="card-content">
+                    <h6 class="">Please address the following.</h6>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li class="white-text">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
         @endif
 
     </div>

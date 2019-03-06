@@ -85,7 +85,7 @@ class ManagersController extends Controller
 
         // Department details
         $employee->position = 'Manager';
-        $employee->department_id = request()->validate(['department_id' => 'required',], ['department_id.required' => 'The department is required'])['department_id'];
+        $employee->department_id = request()->validate(['department_id' => 'required', ], ['department_id.required' => 'The department is required'])['department_id'];
         $employee->manager_id = 1;
 
         // Save all employee details
@@ -107,8 +107,8 @@ class ManagersController extends Controller
             ['position', 'NOT LIKE', '%manager%']
         ])->get();
         */
-        
-        
+
+
 
         // Update requisitions table for all pending items
 
@@ -164,17 +164,37 @@ class ManagersController extends Controller
      */
     public function update($id)
     {
-        // dd(request()->all());
 
         $employee = Employee::find($id);
         $user = User::find($employee->user_id);
 
-        $employee->employee_number = request('employee_number');
-        $employee->first_name = request('first_name');
-        $employee->last_name = request('last_name');
-        $user->username = request('username');
-        $user->email = request('email');
+        // Employee number, first name and last name
+        if ($employee->employee_number == request('employee_number')) {
 
+            $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~']])['employee_number'];
+        } else {
+            $employee->employee_number = request()->validate(['employee_number' => ['required', 'size:6', 'regex:~EN\d{4}~', 'unique:employees,employee_number']])['employee_number'];
+        }
+
+        $employee->first_name = request()->validate(['first_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['first_name'];
+        $employee->last_name = request()->validate(['last_name' => ['required', 'regex:~^[^0-9]+$~', 'min:3', 'max:255']])['last_name'];
+
+        // username and email first
+        if ($user->username == request('username')) {
+            $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255']])['username'];
+        } else {
+
+            $user->username = request()->validate(['username' => ['required', 'min:5', 'max:255', 'unique:users,username']])['username'];
+        }
+
+        if ($user->email == request('email')) {
+            $user->email = request()->validate(['email' => ['required', 'min:5', 'max:255']])['email'];
+        } else {
+
+            $user->email = request()->validate(['email' => ['required', 'min:5', 'max:255', 'unique:users,email']])['email'];
+        }
+
+        // Save  manager details
         $user->save();
         $employee->save();
 
