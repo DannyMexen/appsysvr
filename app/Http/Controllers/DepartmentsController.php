@@ -87,10 +87,9 @@ class DepartmentsController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
         $department->name = request()->validate(
             [
-                'name' => ['required', 'min:5', 'max:255', 'unique:departments,name', 'regex:~^[^0-9]+$~'],
+                'name' => ['required', 'min:5', 'max:255', 'unique:departments,name', 'regex:~^[^0-9]+$~']
             ],
 
             ['name.regex' => 'Numbers are not allowed.']
