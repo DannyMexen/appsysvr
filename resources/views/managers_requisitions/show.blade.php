@@ -17,12 +17,12 @@
 
                 <div class="col s12">
                     <a class="green btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Approve"
-                        href="/managers-approvals"><i class="material-icons left">check</i></a>
+                        href="/managers-approvals"><i class="material-icons left">thumb_up</i></a>
                 </div>
 
                 <div class="row"></div>
                 <div class="col s12">
-                    <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject" href="/managers-rejections"><i class="material-icons left">clear</i></a>
+                    <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject" href="/managers-rejections"><i class="material-icons left">thumb_down</i></a>
                 </div>
                 <div class="row"></div>
 

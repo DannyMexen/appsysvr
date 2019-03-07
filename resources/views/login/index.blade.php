@@ -11,12 +11,12 @@
     <!-- Middle column -->
     <div class="col s4">
         <div class="row">
-            <div class="card">
+
+            <div class="card hoverable">
                 <div class="card-content">
 
                     <form method="POST" action="/login">
                         {{ csrf_field() }}
-
                         <div class="input-field">
                             <i class="material-icons prefix">face</i>
                             <input type="text" id="username" name="username" value="{{ old('username') }}">
@@ -33,11 +33,11 @@
                             <button class="btn waves-effect waves-light blue darken-2" type="submit" name="action">Login
                                         <i class="material-icons right">send</i></button>
                         </div>
-
                     </form>
 
                 </div>
             </div>
+
         </div>
     </div>
 

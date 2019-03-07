@@ -10,20 +10,20 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
+                    <a class="blue darken-4 btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Requisitions"
                         href="/requisitions"><i class="material-icons left">list</i></a>
                 </div>
 
                 <div class="row"></div>
                 <div class="col s12">
                     <a class="green btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Approve"
-                        href="/approvals"><i class="material-icons left">check</i></a>
+                        href="/approvals"><i class="material-icons left">thumb_up</i></a>
                 </div>
 
                 <div class="row"></div>
                 <div class="col s12">
                     <a class="red btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Reject"
-                        href="/rejections"><i class="material-icons left">clear</i></a>
+                        href="/rejections"><i class="material-icons left">thumb_down</i></a>
                 </div>
                 <div class="row"></div>
 
