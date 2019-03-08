@@ -93,7 +93,7 @@ class ManagersRequisitionsController extends Controller
         $requisition = DB::select(DB::raw("
 
             SELECT 
-                        v.registration, v.make, v.model,
+                        v.id AS vehicle_id, v.registration, v.make, v.model,
                         r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
 	                    concat(eo.first_name, ' ', eo.last_name) AS officer, concat(e.first_name, ' ', e.last_name) AS requester, concat(em.first_name, ' ', em.last_name) AS manager,
                         p.actor
@@ -114,6 +114,8 @@ class ManagersRequisitionsController extends Controller
                         AND
                         r.id = $id
         "))[0];
+
+        session(['vehicle_id' => $requisition->vehicle_id ]);
 
         return view('managers_requisitions.show', compact('requisition'));
     }

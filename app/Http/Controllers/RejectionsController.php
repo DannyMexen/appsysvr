@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Rejection;
+use App\Vehicle;
+use App\Requisition;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 class RejectionsController extends Controller
 {
     /**
@@ -15,9 +18,15 @@ class RejectionsController extends Controller
     public function index()
     {
         //
+        
 DB::table('requisitions')
             ->where('id', session('requisition_id'))
             ->update(['pending_action_id' => 5]);
+
+ DB::table('vehicles')
+            ->where('id', session('vehicle_id'))
+            ->update(['available' => 'Yes']);
+            
 
             // Send emails
 

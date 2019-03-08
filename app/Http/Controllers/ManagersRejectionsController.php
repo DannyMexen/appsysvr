@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ManagersRejectionsController extends Controller
 {
@@ -18,11 +19,13 @@ class ManagersRejectionsController extends Controller
             ->where('id', session('requisition_id'))
             ->update(['pending_action_id' => 6]);
 
-            // Send emails
+        DB::table('vehicles')
+            ->where('id', session('vehicle_id'))
+            ->update(['available' => 'Yes']);
+
+        // Send emails
 
         return redirect('/managers-requisitions');
-
-
     }
 
     /**
