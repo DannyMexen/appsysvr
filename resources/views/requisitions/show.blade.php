@@ -52,8 +52,8 @@
                     <thead class="blue lighten-3">
                         <tr>
                             <th>Registration</th>
-                            <th>Make</th>
-                            <th>Model</th>
+                            <th>Vehicle Make</th>
+                            <th>Vehicle Model</th>
                         </tr>
                     </thead>
                     <tbody>

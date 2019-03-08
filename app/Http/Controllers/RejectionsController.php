@@ -15,6 +15,14 @@ class RejectionsController extends Controller
     public function index()
     {
         //
+DB::table('requisitions')
+            ->where('id', session('requisition_id'))
+            ->update(['pending_action_id' => 5]);
+
+            // Send emails
+
+        return redirect('/requisitions');
+
     }
 
     /**

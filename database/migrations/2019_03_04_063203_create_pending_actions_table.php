@@ -25,6 +25,7 @@ class CreatePendingActionsTable extends Migration
             ['actor' => 'Manager'],
             ['actor' => 'Employee'],
             ['actor' => 'Complete'],
+            ['actor' => 'Rejected']
 
         ]);
     }
