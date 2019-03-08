@@ -13,9 +13,25 @@ class DashboardController extends Controller
      */
     public function index()
     {
-         if (empty(session('id')) || strcmp(session('position'), 'Admin') !== 0 || strcmp(session('position'), 'Admin') !== 0) {
-            abort(403);
+
+
+        
+
+        abort_if(empty(session('id')), 403);
+
+        $unauthorized_user = true;
+
+        $admin = strcmp(trim(session('position')), trim('Admin'));
+
+        $vt_officer = strcmp(trim(session('position')), trim('VT Officer'));
+
+        
+        if ($admin !== 0 || $vt_officer !== 0) {
+            $unauthorized_user = false;
         }
+
+        abort_if($unauthorized_user, 403);
+
 
         return view('dashboard.index');
     }
