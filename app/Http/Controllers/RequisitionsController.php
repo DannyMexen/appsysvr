@@ -164,7 +164,7 @@ class RequisitionsController extends Controller
      */
     public function show($id)
     {
-        if (empty(session('id')) || strcmp(session('position'), 'VT Officer') !== 0 || strcmp(session('position'), 'Admin') !== 0) {
+        if (empty(session('id'))) {
             abort(403);
         }
 

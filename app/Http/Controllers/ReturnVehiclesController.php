@@ -25,21 +25,21 @@ class ReturnVehiclesController extends Controller
 
         $requisitions = DB::select(DB::raw(
             "
-                SELECT 
-                        v.registration, v.make, v.model, 
-                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.id, r.purpose, 
+                SELECT
+                        v.registration, v.make, v.model,
+                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.id, r.purpose,
                         e.employee_number,
                         concat(e.first_name, ' ', e.last_name) as employee_name,
                         u.email,
                         concat(em.first_name, ' ', em.last_name) as manager
-                FROM 
+                FROM
                         vehicles v, requisitions r, employees e, employees em, users u
-                WHERE 
+                WHERE
                         v.id = r.vehicle_id
-                        AND 
-                        em.id = r.manager_id 
-                        AND 
-                        e.id = r.employee_id 
+                        AND
+                        em.id = r.manager_id
+                        AND
+                        e.id = r.employee_id
                         AND
                         u.id = e.user_id
                         AND
@@ -54,7 +54,7 @@ class ReturnVehiclesController extends Controller
         ));
 
 
-        return view('returnvehicles.index', compact('requisitions'));
+        return view('return_vehicles.index', compact('requisitions'));
     }
 
     /**
