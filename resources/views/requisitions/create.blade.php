@@ -1,7 +1,7 @@
-<?php $errors = Session::has('errors') ? Session::get('errors') : $errors; ?> 
-@extends('layout') 
-@extends('navbar') 
-@section('title', 'New Requisition') 
+<?php $errors = Session::has('errors') ? Session::get('errors') : $errors; ?>
+@extends('layout')
+@extends('navbar')
+@section('title', 'New Requisition')
 @section('content')
 
 
@@ -20,7 +20,7 @@
                 <div class="col s12">
                     <div class="">
                         <a class="blue btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Return Vehicle(s)"
-                            href="/returnvehicles"><i class="material-icons left">update</i></a>
+                            href="/return-vehicles"><i class="material-icons left">update</i></a>
                     </div>
                     <div class="row"></div>
                 </div>
@@ -72,7 +72,7 @@
                                             @php ($count = 1)
                                             <option value="" disabled selected>Choose your option</option>
                                             @foreach ($officers as $officer)
-                                               <option value={{ $officer->id }}>{{ $officer->first_name}} {{ $officer->last_name}}</option> 
+                                               <option value={{ $officer->id }}>{{ $officer->first_name}} {{ $officer->last_name}}</option>
                                                @php ($count++)
                                             @endforeach
                                 </select>
@@ -104,7 +104,7 @@
                   @php ($count = 1)
                   <option value="" disabled selected>Choose your option</option>
                   @foreach ($vehicles as $vehicle)
-                     <option value={{ $vehicle->id }}>{{ $vehicle->registration }} - {{ $vehicle->make }} {{ $vehicle->model }}</option> 
+                     <option value={{ $vehicle->id }}>{{ $vehicle->registration }} - {{ $vehicle->make }} {{ $vehicle->model }}</option>
                      @php ($count++)
                   @endforeach
                 </select>
@@ -125,8 +125,8 @@
             </ul>
         </div>
     </div>
-    @endif 
-    
+    @endif
+
     @if (session()->has('message'))
     <div class="green card darken-2">
         <div class="card-content">

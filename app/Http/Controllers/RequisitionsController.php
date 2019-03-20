@@ -25,21 +25,21 @@ class RequisitionsController extends Controller
 
         $requisitions = DB::select(DB::raw(
             "
-                SELECT 
-                        v.registration, v.make, v.model, 
-                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.id, r.purpose, 
+                SELECT
+                        v.registration, v.make, v.model,
+                        DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.id, r.purpose,
                         e.employee_number,
                         concat(e.first_name, ' ', e.last_name) as employee_name,
                         u.email,
                         concat(em.first_name, ' ', em.last_name) as manager
-                FROM 
+                FROM
                         vehicles v, requisitions r, employees e, employees em, users u
-                WHERE 
+                WHERE
                         v.id = r.vehicle_id
-                        AND 
-                        em.id = r.manager_id 
-                        AND 
-                        e.id = r.employee_id 
+                        AND
+                        em.id = r.manager_id
+                        AND
+                        e.id = r.employee_id
                         AND
                         u.id = e.user_id
                         AND
@@ -85,10 +85,10 @@ class RequisitionsController extends Controller
 
         // VT Officers
         $officers = DB::select(DB::raw(
-            "SELECT 
+            "SELECT
                     e.id, e.first_name, e.last_name, e.employee_number, u.username, u.email, e.position, d.name as department, concat(em.first_name, ' ', em.last_name) AS manager
-            
-            FROM 
+
+            FROM
                     employees e, employees em, users u, departments d, managers m
 
             WHERE
@@ -164,7 +164,7 @@ class RequisitionsController extends Controller
      */
     public function show($id)
     {
-        if (empty(session('id'))) {
+        if (empty(session('id')) || strcmp(session('position'), 'VT Officer') !== 0 || strcmp(session('position'), 'Admin') !== 0) {
             abort(403);
         }
 
@@ -172,9 +172,9 @@ class RequisitionsController extends Controller
 
         $requisition = DB::select(DB::raw("
 
-            SELECT 
+            SELECT
                         v.id AS vehicle_id, v.registration, v.make, v.model,
-                        r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose, 
+                        r.id, DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date, DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, r.purpose,
 	                    concat(eo.first_name, ' ', eo.last_name) AS officer, concat(e.first_name, ' ', e.last_name) AS requester, concat(em.first_name, ' ', em.last_name) AS manager,
                         p.actor
 
