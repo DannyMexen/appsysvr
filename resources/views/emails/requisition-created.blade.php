@@ -3,7 +3,7 @@
 
 A new request for a vehicle has been made.
 
-Vehicle: {{ $details['vehicle']['make'] $details['vehicle']['model'] - $details['vehicle']['registration'] }}<br>
+Vehicle: {{ $details['vehicle']['make'] }} {{ $details['vehicle']['model'] }} - {{ $details['vehicle']['registration'] }}<br>
 Purpose: {{ $details['requisition']['purpose'] }}
 
 @component('mail::button', ['url' => url('/login')])
