@@ -143,7 +143,11 @@ class RequisitionsController extends Controller
 
 
         // Save requisition
-        $requisition->save();
+        // $requisition->save();
+
+        dd($requisition); // die and dump
+
+        dump($requisition);
 
         // Make vehicle unavailable
         DB::table('vehicles')
