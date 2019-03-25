@@ -146,14 +146,14 @@ class RequisitionsController extends Controller
 
 
         // Save requisition
-        // $requisition->save();
+        $requisition->save();
 
         // Make vehicle unavailable
-        /* DB::table('vehicles')
+        DB::table('vehicles')
             ->where('id', $requisition->vehicle_id)
             ->update(['available' => 'No']);
 
- */        // Send e-mail
+        // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
 
         Mail::to($recipient)->queue(

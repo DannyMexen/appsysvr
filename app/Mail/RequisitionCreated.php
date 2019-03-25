@@ -21,7 +21,7 @@ class RequisitionCreated extends Mailable
     public function __construct($requisition)
     {
         //
-        $this->project = $requisition;
+        $this->requisition = $requisition;
     }
 
     /**
