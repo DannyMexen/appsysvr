@@ -51,6 +51,7 @@ class RequisitionsController extends Controller
                         r.pending_action_id = 1
                 ORDER BY
                         r.created_at
+                        DESC
             "
         ));
 
@@ -83,8 +84,8 @@ class RequisitionsController extends Controller
         // Pending actions
         // $pending_actions =
 
-            // Available vehicles
-            $vehicles = Vehicle::all()->where('available', '=', 'Yes');
+        // Available vehicles
+        $vehicles = Vehicle::all()->where('available', '=', 'Yes');
 
         // VT Officers
         $officers = DB::select(DB::raw(
@@ -144,14 +145,8 @@ class RequisitionsController extends Controller
         // Pending Action
         $requisition->pending_action_id = 1;
 
-
         // Save requisition
         $requisition->save();
-
-        // Make vehicle unavailable
-        DB::table('vehicles')
-            ->where('id', $requisition->vehicle_id)
-            ->update(['available' => 'No']);
 
         // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
@@ -159,6 +154,12 @@ class RequisitionsController extends Controller
         Mail::to($recipient)->queue(
             new RequisitionCreated($requisition)
         );
+
+        // Make vehicle unavailable
+        DB::table('vehicles')
+            ->where('id', $requisition->vehicle_id)
+            ->update(['available' => 'No']);
+
 
         // Success message
         return redirect()->back()->with('message', 'Success. Please logout if finished.');
@@ -204,7 +205,7 @@ class RequisitionsController extends Controller
         "))[0];
 
 
-        session(['vehicle_id' => $requisition->vehicle_id ]);
+        session(['vehicle_id' => $requisition->vehicle_id]);
 
         return view('requisitions.show', compact('requisition'));
     }

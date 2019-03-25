@@ -5,7 +5,7 @@ A new request for a vehicle has been made.
 
 Reason for using vehicle: {{ $requisition->purpose }}
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => url('/login')])
 View Requisitions
 @endcomponent
 
