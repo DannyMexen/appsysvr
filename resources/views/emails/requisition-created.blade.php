@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# New Requisition
 
-The body of your message.
+A new request for a vehicle has been made.
 
 @component('mail::button', ['url' => ''])
-Button Text
+View Requisitions
 @endcomponent
 
 Thanks,<br>

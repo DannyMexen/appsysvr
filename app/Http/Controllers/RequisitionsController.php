@@ -156,7 +156,7 @@ class RequisitionsController extends Controller
  */        // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
 
-        Mail::to($recipient)->send(
+        Mail::to($recipient)->queue(
             new RequisitionCreated($requisition)
         );
 

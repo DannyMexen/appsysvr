@@ -11,14 +11,17 @@ class RequisitionCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $requisition;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($requisition)
     {
         //
+        $this->project = $requisition;
     }
 
     /**
