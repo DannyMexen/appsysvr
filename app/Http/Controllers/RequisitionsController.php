@@ -6,9 +6,12 @@ use App\Requisition;
 use App\Employee;
 use App\Department;
 use App\Vehicle;
+use App\Mail\RequisitionCreated;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Mail;
 
 class RequisitionsController extends Controller
 {
@@ -78,7 +81,7 @@ class RequisitionsController extends Controller
         }
 
         // Pending actions
-        $pending_actions =
+        // $pending_actions =
 
             // Available vehicles
             $vehicles = Vehicle::all()->where('available', '=', 'Yes');
@@ -145,16 +148,17 @@ class RequisitionsController extends Controller
         // Save requisition
         // $requisition->save();
 
-        dd($requisition); // die and dump
-
-        dump($requisition);
-
         // Make vehicle unavailable
-        DB::table('vehicles')
+        /* DB::table('vehicles')
             ->where('id', $requisition->vehicle_id)
             ->update(['available' => 'No']);
 
-        // Send e-mail
+ */        // Send e-mail
+        $recipient = User::find($requisition->officer_id)->email;
+
+        Mail::to($recipient)->send(
+            new RequisitionCreated($requisition)
+        );
 
         // Success message
         return redirect()->back()->with('message', 'Success. Please logout if finished.');
