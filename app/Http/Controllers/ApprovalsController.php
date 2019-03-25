@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Approval;
 use Illuminate\Http\Request;
+use App\Requisition;
+use App\Employee;
+use Illuminate\Foundation\Auth\User;
+use App\Mail\RequisitionRequest;
+use Illuminate\Support\Facades\Mail;
 
 class ApprovalsController extends Controller
 {
@@ -16,14 +21,38 @@ class ApprovalsController extends Controller
     public function index()
     {
 
+        $requisition = Requisition::find(session('requisition_id'));
+
+        $employee = Employee::find($requisition->employee_id);
+
+        $user = User::find($requisition->employee_id);
+
+        $officer = Employee::find($requisition->officer_id);
+
+        $details = new \ArrayObject([
+
+            'requisition' => $requisition,
+            'employee' => $employee,
+            'user' => $user,
+            'officer' => $officer
+
+        ]);
+
+        // Send emails
+        $recipient = User::find($requisition->manager_id)->email;
+
+        Mail::to($recipient)->queue(
+            new RequisitionRequest($details)
+        );
+
+
         DB::table('requisitions')
             ->where('id', session('requisition_id'))
             ->update(['pending_action_id' => 2]);
 
-            // Send emails
 
         return redirect('/requisitions');
-   }
+    }
 
     /**
      * Show the form for creating a new resource.

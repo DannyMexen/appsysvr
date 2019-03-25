@@ -7,12 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RequisitionCreated extends Mailable
+class RequisitionRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $details;
-
     /**
      * Create a new message instance.
      *
@@ -31,6 +30,6 @@ class RequisitionCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.requisition-created');
+        return $this->markdown('emails.requisition-request');
     }
 }

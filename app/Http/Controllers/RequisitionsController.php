@@ -148,11 +148,27 @@ class RequisitionsController extends Controller
         // Save requisition
         $requisition->save();
 
+        // Full requisition details
+        $employee = Employee::find($requisition->employee_id);
+
+        $user = User::find($requisition->employee_id);
+
+        $officer = Employee::find($requisition->officer_id);
+
+        $details = new \ArrayObject([
+
+            'requisition' => $requisition,
+            'employee' => $employee,
+            'user' => $user,
+            'officer' => $officer
+
+        ]);
+
         // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
 
         Mail::to($recipient)->queue(
-            new RequisitionCreated($requisition)
+            new RequisitionCreated($details)
         );
 
         // Make vehicle unavailable
