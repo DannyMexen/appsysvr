@@ -167,8 +167,6 @@ class RequisitionsController extends Controller
 
         ]);
 
-        return $details;
-
         // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
 
