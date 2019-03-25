@@ -10,6 +10,7 @@ use App\Employee;
 use Illuminate\Foundation\Auth\User;
 use App\Mail\RequisitionRequest;
 use Illuminate\Support\Facades\Mail;
+use App\Vehicle;
 
 class ApprovalsController extends Controller
 {
@@ -29,12 +30,15 @@ class ApprovalsController extends Controller
 
         $officer = Employee::find($requisition->officer_id);
 
+        $vehicle = Vehicle::find($requisition->vehicle_id);
+
         $details = new \ArrayObject([
 
             'requisition' => $requisition,
             'employee' => $employee,
             'user' => $user,
-            'officer' => $officer
+            'officer' => $officer,
+            'vehicle' => $vehicle
 
         ]);
 

@@ -155,14 +155,19 @@ class RequisitionsController extends Controller
 
         $officer = Employee::find($requisition->officer_id);
 
+        $vehicle = Vehicle::find($requisition->vehicle_id);
+
         $details = new \ArrayObject([
 
             'requisition' => $requisition,
             'employee' => $employee,
             'user' => $user,
-            'officer' => $officer
+            'officer' => $officer,
+            'vehicle' => $vehicle
 
         ]);
+
+        return $details;
 
         // Send e-mail
         $recipient = User::find($requisition->officer_id)->email;
