@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Requisition;
 use Illuminate\Support\Facades\DB;
+use App\Employee;
+use Illuminate\Foundation\Auth\User;
+use App\Mail\RequisitionReturned;
+use Illuminate\Support\Facades\Mail;
 use App\Vehicle;
+
 
 class ReturnVehiclesController extends Controller
 {
@@ -92,8 +97,37 @@ class ReturnVehiclesController extends Controller
         $requisition->pending_action_id = 4;
         $vehicle->available = 'Yes';
 
-        $requisition->save();
+        /* $requisition->save();
         $vehicle->save();
+*/
+
+        $employee = Employee::find($requisition->employee_id);
+
+        $user = User::find($requisition->employee_id);
+
+        $manager = Employee::find($requisition->manager_id);
+
+        $officer = Employee::find($requisition->officer_id);
+
+        $details = new \ArrayObject([
+
+            'requisition' => $requisition,
+            'employee' => $employee,
+            'user' => $user,
+            'officer' => $officer,
+            'vehicle' => $vehicle,
+            'manager' => $manager
+
+        ]);
+
+        // Send emails
+        $manager_address = User::find($manager->user_id)->email;
+        $officer_address = User::find($officer->user_id)->email;
+
+        Mail::to($officer_address)->cc($manager_address)->queue(
+            new RequisitionReturned($details)
+        );
+
 
         // Send e-mail
 
