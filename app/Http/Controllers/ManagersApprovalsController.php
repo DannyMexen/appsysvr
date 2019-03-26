@@ -45,7 +45,6 @@ class ManagersApprovalsController extends Controller
 
         ]);
 
-        return $user->email;
 
         // Send emails
         $recipient = $user->email;
