@@ -30,6 +30,7 @@ class RequisitionRequest extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.requisition-request');
+        return $this->markdown('emails.requisition-request')
+                    ->subject('New Vehicle Requisition');
     }
 }

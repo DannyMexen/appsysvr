@@ -31,6 +31,7 @@ class RequisitionCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.requisition-created');
+        return $this->markdown('emails.requisition-created')
+                    ->subject('New Vehicle Requisition');
     }
 }
