@@ -97,9 +97,9 @@ class ReturnVehiclesController extends Controller
         $requisition->pending_action_id = 4;
         $vehicle->available = 'Yes';
 
-        /* $requisition->save();
+        $requisition->save();
         $vehicle->save();
-*/
+
 
         $employee = Employee::find($requisition->employee_id);
 
