@@ -6,8 +6,12 @@ use App\Rejection;
 use App\Vehicle;
 use App\Requisition;
 use Illuminate\Http\Request;
-
+use App\Employee;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use App\Mail\RequisitionRejected;
+
 class RejectionsController extends Controller
 {
     /**
@@ -18,20 +22,52 @@ class RejectionsController extends Controller
     public function index()
     {
         //
-        
-DB::table('requisitions')
+
+
+        $requisition = Requisition::find(session('requisition_id'));
+
+        $employee = Employee::find($requisition->employee_id);
+
+        $user = User::find($requisition->employee_id);
+
+        $officer = Employee::find($requisition->officer_id);
+
+        $vehicle = Vehicle::find($requisition->vehicle_id);
+
+        $manager = Employee::find($requisition->manager_id);
+
+        $details = new \ArrayObject([
+
+            'requisition' => $requisition,
+            'employee' => $employee,
+            'user' => $user,
+            'officer' => $officer,
+            'vehicle' => $vehicle,
+            'manager' => $manager
+
+        ]);
+
+
+        // Send emails
+        $employee_address = $user->email;
+        $manager_address = User::find($requisition->manager_id)->email;
+
+        Mail::to($employee_address)->cc($manager_address)->queue(
+            new RequisitionRejected($details)
+        );
+
+
+        DB::table('requisitions')
             ->where('id', session('requisition_id'))
             ->update(['pending_action_id' => 5]);
 
- DB::table('vehicles')
-            ->where('id', session('vehicle_id'))
-            ->update(['available' => 'Yes']);
-            
 
-            // Send emails
+        // Make vehicle available
+        $vehicle->available = 'Yes';
+        $vehicle->save();
+
 
         return redirect('/requisitions');
-
     }
 
     /**

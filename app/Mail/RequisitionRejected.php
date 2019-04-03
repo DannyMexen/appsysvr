@@ -7,11 +7,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RequisitionRequest extends Mailable
+class RequisitionRejected extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $details;
+
     /**
      * Create a new message instance.
      *
@@ -30,7 +31,7 @@ class RequisitionRequest extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.requisition-request')
-                    ->subject('New Vehicle Requisition');
+        return $this->markdown('emails.requisition-rejected')
+                    ->subject('Vehicle Requisition Rejected');
     }
 }
