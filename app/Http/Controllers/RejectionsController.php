@@ -8,9 +8,9 @@ use App\Requisition;
 use Illuminate\Http\Request;
 use App\Employee;
 use Illuminate\Foundation\Auth\User;
-use App\Mail\RequisitionRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use App\Mail\RequisitionRejected;
 
 class RejectionsController extends Controller
 {
@@ -41,13 +41,16 @@ class RejectionsController extends Controller
 
         $vehicle = Vehicle::find($requisition->vehicle_id);
 
+        $manager = Employee::find($requisition->manager_id);
+
         $details = new \ArrayObject([
 
             'requisition' => $requisition,
             'employee' => $employee,
             'user' => $user,
             'officer' => $officer,
-            'vehicle' => $vehicle
+            'vehicle' => $vehicle,
+            'manager' => $manager
 
         ]);
 
@@ -57,7 +60,7 @@ class RejectionsController extends Controller
         $manager_address = User::find($requisition->manager_id)->email;
 
         Mail::to($employee_address)->cc($manager_address)->queue(
-            new RequisitionRequest($details)
+            new RequisitionRejected($details)
         );
 
 
@@ -68,6 +71,7 @@ class RejectionsController extends Controller
 
         // Make vehicle available
         $vehicle->available = 'Yes';
+        $vehicle->save();
 
 
         return redirect('/requisitions');
