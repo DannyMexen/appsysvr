@@ -1,7 +1,7 @@
-@extends('layout') 
-@extends('navbar_login') 
-@extends('background') 
-@section('title', 'AppSys Login') 
+@extends('layout')
+@extends('navbar_login')
+@extends('background')
+@section('title', 'AppSys Login')
 @section('content')
 
 <div class="row">
@@ -10,6 +10,10 @@
 
     <!-- Middle column -->
     <div class="col s4">
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
         <div class="row">
 
             <div class="card hoverable">
@@ -31,7 +35,7 @@
 
                         <div class="input-field center">
                             <button class="btn waves-effect waves-light blue darken-2" type="submit" name="action">Login
-                                        <i class="material-icons right">send</i></button>
+                                <i class="material-icons right">send</i></button>
                         </div>
                     </form>
 

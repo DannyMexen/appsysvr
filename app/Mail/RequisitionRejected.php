@@ -31,7 +31,7 @@ class RequisitionRejected extends Mailable
      */
     public function build()
     {
-        return $this->markdown('requisition-rejected')
+        return $this->markdown('emails.requisition-rejected')
                     ->subject('Vehicle Requisition Rejected');
     }
 }
