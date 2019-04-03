@@ -23,13 +23,6 @@ class RejectionsController extends Controller
     {
         //
 
-        /* DB::table('requisitions')
-            ->where('id', session('requisition_id'))
-            ->update(['pending_action_id' => 5]);
-
- DB::table('vehicles')
-            ->where('id', session('vehicle_id'))
-            ->update(['available' => 'Yes']); */
 
         $requisition = Requisition::find(session('requisition_id'));
 
