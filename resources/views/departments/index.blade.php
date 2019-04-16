@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <a class="btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
+                    <a class="blue darken-4 btn-floating waves-effect waves-light btn-large tooltipped" data-position="bottom" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons left">apps</i></a>
                 </div>
                 <div class="row"></div>
                 <div class="col s12">
