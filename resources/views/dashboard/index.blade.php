@@ -1,6 +1,6 @@
-@extends('layout') 
-@extends('navbar') 
-@section('title', 'Admin Console') 
+@extends('layout')
+@extends('navbar')
+@section('title', 'Admin Console')
 @section('content')
 
 <div class="">
@@ -34,8 +34,8 @@
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
-                        <span class="card-title">Reports</span>
-                        <p>View reports.</p>
+                        <span class="card-title">Status</span>
+                        <p>View report.</p>
                     </div>
                     <div class="blue darken-4 card-action">
                         <div class="center">
