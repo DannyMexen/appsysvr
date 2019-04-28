@@ -36,6 +36,7 @@ Resourceful controllers
 14. Change Password
 13. Return Vehicles
 14. Reset Password
+15. Report
 
 */
 
@@ -57,4 +58,4 @@ Route::resource('managers-rejections', 'ManagersRejectionsController');
 Route::resource('change-password', 'ChangePasswordController');
 Route::resource('return-vehicles', 'ReturnVehiclesController');
 Route::resource('reset-password', 'ResetPasswordController');
-Route::resource('status', 'StatusController');
+Route::resource('report', 'ReportsController');

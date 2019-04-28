@@ -30,7 +30,7 @@
         <div class="col s4">
             <div class="card horizontal">
                 <div class="card-image">
-                    <a href="#"><img src="/img/reports.png"></a>
+                    <a href="/report"><img src="/img/reports.png"></a>
                 </div>
                 <div class="card-stacked">
                     <div class="blue lighten-3 card-content">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="blue darken-4 card-action">
                         <div class="center">
-                            <a href="#">PROCEED</a>
+                            <a href="/report">PROCEED</a>
                         </div>
                     </div>
                 </div>
