@@ -28,8 +28,8 @@ class ReportsController extends Controller
 							from departments d
 								where e.department_id = d.id) AS department,
 							r.purpose AS purpose, -- Purpose
-								DATE_FORMAT(r.start_date, '%d %M %Y') AS start_date,
-									DATE_FORMAT(r.return_date, '%d %M %Y') AS return_date, -- Usage dates
+								DATE_FORMAT(r.start_date, '%d %b') AS start_date,
+									DATE_FORMAT(r.return_date, '%d %b') AS return_date, -- Usage dates
 									p.actor AS pending_action -- Pending action
 FROM
 	requisitions r
@@ -43,7 +43,6 @@ JOIN vehicles v ON r.vehicle_id = v.id
 
         "));
 
-        return $requisitions_status;
 
 
         return view('report.index', compact('requisitions_status'));
